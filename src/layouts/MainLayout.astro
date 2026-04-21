@@ -1,0 +1,39 @@
+---
+import Header from '../components/Header.astro'
+import '../styles/main.scss'
+const { title } = Astro.props
+---
+
+<html>
+	<head>
+		<meta charset='utf-8' />
+		<meta name='viewport' content='width=device-width,initial-scale=1' />
+		<title>{title}</title>
+		<script
+			is:inline
+			src='https://identity.netlify.com/v1/netlify-identity-widget.js'></script>
+	</head>
+	<slot name='head' />
+
+	<body>
+		<Header />
+		<slot />
+		<script>
+			if (window.netlifyIdentity) {
+				window.netlifyIdentity.on('init', (user) => {
+					if (!user) {
+						window.netlifyIdentity.on('login', () => {
+							document.location.href = '/admin/index.html'
+						})
+					}
+				})
+			}
+		</script>
+	</body>
+</html>
+
+<style scoped lang='scss'>
+	body {
+		overflow-x: hidden;
+	}
+</style>

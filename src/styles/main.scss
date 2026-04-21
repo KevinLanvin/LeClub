@@ -1,0 +1,27 @@
+@use "gutters";
+
+// Fonts
+
+// Global
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  &:focus {
+    outline: none;
+  }
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: gutters.$small;
+  padding: 0;
+  flex-grow: 1;
+  text-align: justify;
+}
+
+a {
+  text-decoration: none;
+}

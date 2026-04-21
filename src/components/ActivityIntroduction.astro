@@ -1,0 +1,19 @@
+---
+const { title, text } = Astro.props
+---
+
+<section class='introduction'>
+	<h2>{title}</h2>
+	<p>
+		{text}
+	</p>
+</section>
+
+<style lang='scss' scoped>
+	@use '../styles/colors';
+
+	.introduction {
+		border: 3px solid colors.$main;
+		background-color: colors.$grey;
+	}
+</style>

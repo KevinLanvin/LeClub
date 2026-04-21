@@ -1,0 +1,20 @@
+backend:
+  name: git-gateway
+  branch: main
+publish_mode: simple
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+editor:
+  preview: false
+collections:
+  - label: Horaires
+    name: courses
+    create: false
+    delete: false
+    preview_path: /
+    files:
+      - label: Horaires
+        name: courses
+        file: src/content/courses.md
+        fields:
+          - { label: Texte, name: text, widget: markdown }

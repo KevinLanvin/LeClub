@@ -1,0 +1,149 @@
+---
+import Badge from '../icons/badge.astro'
+import DogPaw from '../icons/dog-paw.astro'
+import Hurdle from '../icons/hurdle.astro'
+import Learn from '../icons/learn.astro'
+---
+
+<h2>Activités proposées</h2>
+<section class='activities'>
+	<div class='activity'>
+		<header>
+			<h2>Ecole du chiot</h2>
+			<img src='/images/puppy.jpeg' alt='Puppy' />
+		</header>
+		<div class='content'>
+			<p class='description'>
+				Accompagnez-le dans sa découverte du monde et prenez dès le début les
+				bons réflexes
+			</p>
+			<a href='' class='action'>Ca a l'air génial !</a>
+		</div>
+		<DogPaw class='illustration' />
+	</div>
+	<div class='activity'>
+		<header>
+			<h2>Education</h2>
+			<img src='/images/education.webp' alt='Dog school' />
+		</header>
+		<div class='content'>
+			<p class='description'>
+				Apprentissage des commandes de base, de la marche en laisse, et plein de
+				jeux pour partager plus de choses avec votre chien
+			</p>
+			<a href='' class='action'>En savoir plus !</a>
+		</div>
+		<Learn class='illustration' />
+	</div>
+	<div class='activity'>
+		<header>
+			<h2>Agility</h2>
+			<img src='/images/agility.jpg' alt='Agility' />
+		</header>
+		<div class='content'>
+			<p class='description'>
+				Pour vivre avec votre chien une vie sportive pleine d'énergie ! Ouvert
+				en loisir et compétition sous conditions
+			</p>
+			<a href='' class='action'>C'est parti !</a>
+		</div>
+		<Hurdle class='illustration' />
+	</div>
+	<div class='activity'>
+		<header>
+			<h2>Obéissance</h2>
+			<img src='/images/obedience.jpeg' alt='Agility' />
+		</header>
+		<div class='content'>
+			<p class='description'>
+				Développez encore plus votre complicité en réalisant des exercices plus
+				poussés
+			</p>
+			<a href='' class='action'>Ca m'intéresse !</a>
+		</div>
+		<Badge class='illustration' />
+	</div>
+</section>
+
+<style lang='scss' scoped>
+	@use '../styles/colors';
+	@use '../styles/borders';
+	@use '../styles/gutters';
+
+	.activities {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		gap: gutters.$extra-large;
+		padding: gutters.$large gutters.$extra-large;
+		.activity {
+			width: 100%;
+			background-color: colors.$button;
+			border-top-left-radius: borders.$radius;
+			border-top-right-radius: borders.$radius;
+			color: colors.$white;
+			position: relative;
+			display: flex;
+			flex-direction: column;
+			header {
+				width: 100%;
+				height: 8rem;
+				position: relative;
+				padding: gutters.$normal;
+				h2 {
+					color: colors.$white;
+					z-index: 1;
+					position: relative;
+				}
+				img {
+					position: absolute;
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					object-position: center;
+					border-top-left-radius: borders.$radius;
+					border-top-right-radius: borders.$radius;
+					filter: brightness(0.4);
+				}
+			}
+			.content {
+				padding: gutters.$large gutters.$normal;
+				display: flex;
+				flex-direction: column;
+				gap: gutters.$large;
+				justify-content: space-between;
+				flex: 1;
+			}
+			.action {
+				background-color: colors.$white;
+				color: colors.$main;
+				padding: gutters.$small;
+				border-radius: borders.$radius;
+				display: block;
+				align-self: stretch;
+				text-align: center;
+				font-weight: bold;
+				border: 1px solid colors.$white;
+				&:hover {
+					background-color: transparent;
+					color: colors.$white;
+					border: 1px solid colors.$white;
+				}
+			}
+			:global(.illustration) {
+				position: absolute;
+				top: 0;
+				right: 0;
+				transform: translate(2rem, -2rem) rotate(20deg);
+				width: 6rem;
+				height: fit-content;
+				z-index: 1;
+				:global(path) {
+					fill: colors.$main;
+				}
+			}
+		}
+	}
+</style>

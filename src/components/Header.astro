@@ -1,0 +1,212 @@
+<header class='header'>
+	<img src='/images/logo-club.png' alt='Logo' class='logo' />
+	<div class='header__desktop'>
+		<div class='expandable'>
+			<span>Les activités</span>
+			<div class='submenu'>
+				<a href=''>Ecole du chiot</a>
+				<a href=''>Education</a>
+				<a href=''>Agility</a>
+				<a href=''>Obéissance</a>
+			</div>
+		</div>
+		<a href=''>Nous rejoindre</a>
+		<a href=''>Qui sommes-nous ?</a>
+	</div>
+	<div class='header__mobile'>
+		<input type='checkbox' id='hamburger-toggle' />
+		<label class='header__hamburger' for='hamburger-toggle'>
+			<span></span>
+			<span></span>
+			<span></span>
+			<span></span>
+		</label>
+		<div id='menuMobile' class='header__mobile-menu hidden'>
+			<div class='submenu'>
+				<span>Les activités</span>
+				<div class='submenu'>
+					<a href='chiots'>Ecole du chiot</a>
+					<a href='education'>Education</a>
+					<a href='agility'>Agility</a>
+					<a href='obeissance'>Obéissance</a>
+				</div>
+			</div>
+			<a href='contact'>Nous rejoindre</a>
+			<a href='a-propos'>Qui sommes-nous ?</a>
+		</div>
+	</div>
+
+	<script>
+		const menuMobile = document.getElementById('menuMobile')
+		document
+			.getElementById('hamburger-toggle')
+			?.addEventListener('change', () => menuMobile?.classList.toggle('hidden'))
+	</script>
+
+	<style scoped lang='scss'>
+		@use '../styles/colors';
+		@use '../styles/gutters';
+		@use '../styles/borders';
+		@use '../styles/shadows';
+
+		.header {
+			position: sticky;
+			top: 0;
+			z-index: 9999;
+			background-color: colors.$main;
+			display: flex;
+			justify-content: space-between;
+			padding: gutters.$normal;
+			.logo {
+				margin-right: auto;
+				width: 100px;
+			}
+			.header__desktop {
+				display: flex;
+				align-items: center;
+				gap: gutters.$normal;
+				.expandable {
+					cursor: pointer;
+					position: relative;
+					&:hover .submenu {
+						display: flex;
+						align-items: stretch;
+					}
+				}
+				.submenu {
+					position: absolute;
+					top: 100%;
+					left: 50%;
+					transform: translateX(-50%);
+					width: auto;
+					display: none;
+					flex-direction: column;
+					align-items: center;
+					justify-content: space-around;
+					padding: gutters.$small 0;
+					background-color: colors.$white;
+					border-radius: borders.$radius;
+					box-shadow: shadows.$dark-bottom;
+					a {
+						text-align: center;
+						text-wrap: nowrap;
+						padding-left: gutters.$normal;
+						padding-right: gutters.$normal;
+					}
+				}
+			}
+		}
+		.active {
+			color: colors.$accent;
+		}
+
+		.header__mobile {
+			display: none;
+		}
+
+		@media (max-width: 1000px) {
+			.header {
+				height: 5rem;
+				.header__hamburger {
+					width: 3.6rem;
+					height: 3.25rem;
+					position: relative;
+					cursor: pointer;
+					padding: 1rem;
+					margin-right: -1rem;
+					align-self: center;
+					span {
+						display: block;
+						position: absolute;
+						margin-left: 0;
+						width: 1.6rem;
+						height: 0.25rem;
+						background-color: colors.$button;
+						border-radius: 0.2rem;
+						transition:
+							transform 0.2s ease,
+							background-color 0.2s ease;
+						&:nth-child(1) {
+							top: 1;
+						}
+						&:nth-child(2) {
+							top: 1.5rem;
+						}
+						&:nth-child(3) {
+							top: 1.5rem;
+						}
+						&:nth-child(4) {
+							top: 2rem;
+						}
+					}
+				}
+
+				#hamburger-toggle {
+					display: none;
+					&:checked {
+						+ .header__hamburger span {
+							background-color: colors.$button;
+							&:nth-child(1) {
+								transform: scaleX(0.01) translateY(0.6rem);
+							}
+							&:nth-child(2) {
+								transform: rotate(45deg);
+							}
+							&:nth-child(3) {
+								transform: rotate(-45deg);
+							}
+							&:nth-child(4) {
+								transform: scaleX(0.01) translateY(-0.6rem);
+							}
+						}
+					}
+				}
+
+				.header__desktop {
+					display: none;
+				}
+
+				.header__mobile {
+					display: flex;
+					align-items: center;
+				}
+
+				.header__mobile-menu {
+					display: flex;
+					flex-direction: column;
+					gap: 2rem;
+					position: fixed;
+					right: 0;
+					bottom: 0;
+					left: 0;
+					height: calc(100vh - 5rem);
+					background-color: colors.$white;
+					transform: translateX(0);
+					transition: transform 0.3s;
+					padding: gutters.$large;
+					overflow-y: auto;
+					span {
+						margin: 0;
+						& > a {
+							padding: gutters.$small;
+							padding-left: 0;
+							height: auto;
+							line-height: 1.5rem;
+						}
+					}
+					.submenu {
+						padding-left: gutters.$small;
+						padding-top: gutters.$small;
+						display: flex;
+						flex-direction: column;
+						justify-content: space-around;
+						gap: gutters.$small;
+					}
+				}
+				.header__mobile-menu.hidden {
+					transform: translateX(150%);
+				}
+			}
+		}
+	</style>
+</header>
