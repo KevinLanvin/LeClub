@@ -17,10 +17,17 @@ const { inverted = false } = Astro.props
 		border: none;
 		border-radius: borders.$radius-small;
 		cursor: pointer;
+		&:hover {
+			background-color: darken(colors.$accent, 10%);
+		}
 	}
 	.button.inverted {
 		background-color: transparent;
 		color: colors.$accent;
 		border: borders.$button;
+		&:hover {
+			border-color: darken(colors.$accent, 10%);
+			color: darken(colors.$accent, 10%);
+		}
 	}
 </style>

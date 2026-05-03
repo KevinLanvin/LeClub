@@ -64,6 +64,7 @@ import Button from './atoms/Button.astro'
 	@use '../styles/gutters';
 	@use '../styles/borders';
 	@use '../styles/fonts';
+	@use '../styles/shadows';
 
 	.header {
 		background-color: colors.$white;
@@ -86,13 +87,14 @@ import Button from './atoms/Button.astro'
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			padding: gutters.$normal;
+			padding: 0 gutters.$normal;
 			color: colors.$text;
 			height: 5rem;
 			.logo {
 				width: 25%;
 				height: 100%;
 				margin-right: auto;
+				padding-block: gutters.$small;
 				img {
 					object-fit: contain;
 					height: 100%;
@@ -106,9 +108,17 @@ import Button from './atoms/Button.astro'
 				gap: gutters.$normal;
 			}
 			.header__desktop {
+				height: 100%;
 				display: flex;
-				align-items: center;
-				gap: gutters.$normal;
+				align-items: stretch;
+				gap: gutters.$extra-large;
+				> * {
+					line-height: 5rem;
+					vertical-align: middle;
+				}
+				a:hover {
+					color: colors.$accent;
+				}
 				.expandable {
 					cursor: pointer;
 					position: relative;
@@ -130,12 +140,17 @@ import Button from './atoms/Button.astro'
 					padding: gutters.$small 0;
 					background-color: colors.$white;
 					border-radius: borders.$radius;
+					box-shadow: shadows.$card;
+					line-height: 1rem;
 					a {
 						text-align: center;
 						text-wrap: nowrap;
 						color: colors.$text;
-						padding-left: gutters.$normal;
-						padding-right: gutters.$normal;
+						padding: gutters.$normal 4rem;
+						font-weight: 300;
+						&:hover {
+							color: colors.$accent;
+						}
 					}
 				}
 			}
