@@ -1,1 +1,6 @@
-$radius: 10px;
+@use "./colors";
+
+$radius: 24px;
+$radius-small: 8px;
+$standard: 1px solid colors.$text;
+$button: 1px solid colors.$accent;

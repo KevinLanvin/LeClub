@@ -1,0 +1,26 @@
+---
+const { inverted = false } = Astro.props
+---
+
+<button class:list={['button', { inverted }]}>
+	<slot />
+</button>
+
+<style lang='scss' scoped>
+	@use '../../styles/colors';
+	@use '../../styles/borders';
+
+	.button {
+		background-color: colors.$accent;
+		color: white;
+		padding: 12px 20px;
+		border: none;
+		border-radius: borders.$radius-small;
+		cursor: pointer;
+	}
+	.button.inverted {
+		background-color: transparent;
+		color: colors.$accent;
+		border: borders.$button;
+	}
+</style>
