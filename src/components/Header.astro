@@ -55,16 +55,16 @@ import Button from './atoms/Button.astro'
 <script>
 	const menuMobile = document.getElementById('menuMobile')
 	const toggle = document.getElementById('hamburger-toggle') as HTMLInputElement | null
-	const hamburger = document.querySelector('.header__hamburger')
+	let lastToggle = 0
 
-	const toggleMenu = () => menuMobile?.classList.toggle('hidden')
-
-	toggle?.addEventListener('change', toggleMenu)
-
-	hamburger?.addEventListener('touchend', (e) => {
-		e.preventDefault()
-		if (toggle) toggle.checked = !toggle.checked
-		toggleMenu()
+	toggle?.addEventListener('change', () => {
+		const now = Date.now()
+		if (now - lastToggle < 400) {
+			if (toggle) toggle.checked = !toggle.checked
+			return
+		}
+		lastToggle = now
+		menuMobile?.classList.toggle('hidden')
 	})
 </script>
 
