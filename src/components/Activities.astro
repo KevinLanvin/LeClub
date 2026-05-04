@@ -79,4 +79,13 @@ import Card from './atoms/Card.astro'
 			gap: gutters.$large;
 		}
 	}
+
+	@media (max-width: 1440px) {
+		.activities {
+			max-width: 100%;
+			grid-template-columns: 1fr;
+			padding: gutters.$normal;
+			gap: 5rem;
+		}
+	}
 </style>
