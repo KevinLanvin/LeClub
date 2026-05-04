@@ -93,8 +93,7 @@ import Surprise from '../icons/surprise.astro'
 			bottom: 0;
 			img {
 				width: 100%;
-				height: 100%;
-				object-fit: contain;
+				object-fit: cover;
 			}
 			:global(.surprise) {
 				position: absolute;
@@ -160,6 +159,49 @@ import Surprise from '../icons/surprise.astro'
 				.details {
 					grid-area: text;
 				}
+			}
+		}
+	}
+
+	@media (max-width: 1440px) {
+		.introduction {
+			max-width: 100%;
+			.main {
+				padding: 5rem 3rem 10rem 3rem;
+				max-width: 100%;
+				h1 {
+					font-size: 2rem;
+					line-height: 2rem;
+				}
+				.actions {
+					flex-direction: column;
+				}
+			}
+			.informations {
+				gap: gutters.$normal;
+				max-width: 90%;
+				margin: auto;
+				left: 5%;
+				bottom: unset;
+				top: 100%;
+				transform: unset;
+				grid-template-columns: 1fr;
+				grid-template-rows: repeat(3, 1fr);
+			}
+			.illustration {
+				img {
+					display: block;
+				}
+				:global(.surprise) {
+					position: absolute;
+					top: 0;
+					right: 0;
+					width: 20%;
+				}
+			}
+			.logo {
+				width: 80%;
+				top: 22%;
 			}
 		}
 	}

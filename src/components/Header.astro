@@ -2,10 +2,10 @@
 import Button from './atoms/Button.astro'
 ---
 
+<div class='disclaimer'>
+	Premier cours d’essai gratuit (carnet de vaccination obligatoire) !
+</div>
 <header class='header'>
-	<div class='disclaimer'>
-		Premier cours d’essai gratuit (carnet de vaccination obligatoire) !
-	</div>
 	<nav class='nav'>
 		<a href='/' class='logo'>
 			<img src='/images/logo-club.png' alt='Logo' />
@@ -35,19 +35,19 @@ import Button from './atoms/Button.astro'
 				<span></span>
 				<span></span>
 			</label>
-			<div id='menuMobile' class='header__mobile-menu hidden'>
-				<a href=''>Le Club</a>
-				<div class='expandable'>
-					<span>Les Activités</span>
-					<div class='submenu'>
-						<a href='chiots'>Ecole du chiot</a>
-						<a href='education'>Education</a>
-						<a href='agility'>Agility</a>
-						<a href='obeissance'>Obéissance</a>
-					</div>
+		</div>
+		<div id='menuMobile' class='header__mobile-menu hidden'>
+			<a href=''>Le Club</a>
+			<div class='expandable'>
+				<span>Les Activités</span>
+				<div class='submenu'>
+					<a href='chiots'>Ecole du chiot</a>
+					<a href='education'>Education</a>
+					<a href='agility'>Agility</a>
+					<a href='obeissance'>Obéissance</a>
 				</div>
-				<a href=''>Planning</a>
 			</div>
+			<a href=''>Planning</a>
 		</div>
 	</nav>
 </header>
@@ -66,23 +66,26 @@ import Button from './atoms/Button.astro'
 	@use '../styles/fonts';
 	@use '../styles/shadows';
 
+	.disclaimer {
+		background-color: colors.$main;
+		color: colors.$white;
+		padding: gutters.$small;
+		display: flex;
+		justify-content: center;
+		font-family: Poppins;
+		font-weight: bold;
+		font-size: fonts.$small;
+		text-align: center;
+	}
 	.header {
 		background-color: colors.$white;
-		.disclaimer {
-			background-color: colors.$main;
-			color: colors.$white;
-			padding: gutters.$small;
-			display: flex;
-			justify-content: center;
-			font-family: Poppins;
-			font-weight: bold;
-			font-size: fonts.$small;
-		}
+		position: sticky;
+		top: 0;
+		z-index: 9999;
+		overflow-x: clip;
 		.nav {
 			max-width: gutters.$max-width;
 			margin: auto;
-			position: sticky;
-			top: 0;
 			z-index: 9999;
 			display: flex;
 			justify-content: center;
@@ -242,11 +245,11 @@ import Button from './atoms/Button.astro'
 					display: flex;
 					flex-direction: column;
 					gap: 2rem;
-					position: fixed;
+					position: absolute;
 					right: 0;
-					bottom: 0;
+					top: 100%;
 					left: 0;
-					height: calc(100vh - (5rem + 37px));
+					height: calc(100vh - 5rem);
 					background-color: colors.$white;
 					transform: translateX(0);
 					transition: transform 0.3s;
