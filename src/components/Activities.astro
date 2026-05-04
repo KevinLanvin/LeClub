@@ -1,67 +1,43 @@
 ---
-import Badge from '../icons/badge.astro'
-import DogPaw from '../icons/dog-paw.astro'
-import Hurdle from '../icons/hurdle.astro'
-import Learn from '../icons/learn.astro'
+import Card from './atoms/Card.astro'
 ---
 
-<h2>Activités proposées</h2>
 <section class='activities'>
-	<div class='activity'>
-		<header>
-			<h2>Ecole du chiot</h2>
-			<img src='/images/puppy.jpeg' alt='Puppy' />
-		</header>
-		<div class='content'>
-			<p class='description'>
-				Accompagnez-le dans sa découverte du monde et prenez dès le début les
-				bons réflexes
-			</p>
-			<a href='' class='action'>Ca a l'air génial !</a>
-		</div>
-		<DogPaw class='illustration' />
+	<div class='title'>
+		<h3>Activités d'éducation canine à Teteghem</h3>
+		<h2>
+			On <span class='accent'>s'adapte</span> à votre chien & à chaque situation
+		</h2>
 	</div>
-	<div class='activity'>
-		<header>
-			<h2>Education</h2>
-			<img src='/images/education.webp' alt='Dog school' />
-		</header>
-		<div class='content'>
-			<p class='description'>
-				Apprentissage des commandes de base, de la marche en laisse, et plein de
-				jeux pour partager plus de choses avec votre chien
-			</p>
-			<a href='' class='action'>En savoir plus !</a>
-		</div>
-		<Learn class='illustration' />
-	</div>
-	<div class='activity'>
-		<header>
-			<h2>Agility</h2>
-			<img src='/images/agility.jpg' alt='Agility' />
-		</header>
-		<div class='content'>
-			<p class='description'>
-				Pour vivre avec votre chien une vie sportive pleine d'énergie ! Ouvert
-				en loisir et compétition sous conditions
-			</p>
-			<a href='' class='action'>C'est parti !</a>
-		</div>
-		<Hurdle class='illustration' />
-	</div>
-	<div class='activity'>
-		<header>
-			<h2>Obéissance</h2>
-			<img src='/images/obedience.jpeg' alt='Agility' />
-		</header>
-		<div class='content'>
-			<p class='description'>
-				Développez encore plus votre complicité en réalisant des exercices plus
-				poussés
-			</p>
-			<a href='' class='action'>Ca m'intéresse !</a>
-		</div>
-		<Badge class='illustration' />
+	<div class='grid'>
+		<Card
+			title='Ecole du chiot'
+			description='Socialisation, premiers apprentissages et découverte du monde en douceur'
+			image='/images/chiot.jpg'
+			imageAlt='Chiot'
+			details='Dès 2 mois'
+		/>
+		<Card
+			title='Education canine'
+			description='Apprendre les bases utiles au quotidien'
+			image='/images/education.jpg'
+			imageAlt='Education'
+			details='Dès 6 mois, ouvert à tous'
+		/>
+		<Card
+			title='Obéissance'
+			description='Pour aller plus loin et découvrir des disciplines sportives'
+			image='/images/obedience.jpg'
+			imageAlt='Obéissance'
+			details="Niveau minimal d'éducation requis"
+		/>
+		<Card
+			title='Agility'
+			description='Pour se dépenser et découvrir ce sport très dynamique !'
+			image='/images/agility.jpg'
+			imageAlt='Agility'
+			details='Dès 1 an'
+		/>
 	</div>
 </section>
 
@@ -71,79 +47,36 @@ import Learn from '../icons/learn.astro'
 	@use '../styles/gutters';
 
 	.activities {
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-		gap: gutters.$extra-large;
-		padding: gutters.$large gutters.$extra-large;
-		.activity {
-			width: 100%;
-			background-color: colors.$button;
-			border-top-left-radius: borders.$radius;
-			border-top-right-radius: borders.$radius;
-			color: colors.$white;
-			position: relative;
+		display: grid;
+		gap: gutters.$extra-extra-large;
+		grid-template-columns: 2fr 5fr;
+		max-width: calc(gutters.$max-width - 10rem);
+		margin: auto;
+		.title {
 			display: flex;
 			flex-direction: column;
-			header {
-				width: 100%;
-				height: 8rem;
-				position: relative;
-				padding: gutters.$normal;
-				h2 {
-					color: colors.$white;
-					z-index: 1;
-					position: relative;
-				}
-				img {
-					position: absolute;
-					top: 0;
-					left: 0;
-					width: 100%;
-					height: 100%;
-					object-fit: cover;
-					object-position: center;
-					border-top-left-radius: borders.$radius;
-					border-top-right-radius: borders.$radius;
-					filter: brightness(0.4);
+			gap: gutters.$large;
+			h3 {
+				text-transform: uppercase;
+				font-size: 1rem;
+				line-height: 1rem;
+				font-weight: 300;
+				color: colors.$text;
+			}
+			h2 {
+				font-size: 3rem;
+				font-family: Jomolhari;
+				font-weight: 400;
+				line-height: 3rem;
+				.accent {
+					color: colors.$accent;
 				}
 			}
-			.content {
-				padding: gutters.$large gutters.$normal;
-				display: flex;
-				flex-direction: column;
-				gap: gutters.$large;
-				justify-content: space-between;
-				flex: 1;
-			}
-			.action {
-				background-color: colors.$white;
-				color: colors.$main;
-				padding: gutters.$small;
-				border-radius: borders.$radius;
-				display: block;
-				align-self: stretch;
-				text-align: center;
-				font-weight: bold;
-				border: 1px solid colors.$white;
-				&:hover {
-					background-color: transparent;
-					color: colors.$white;
-					border: 1px solid colors.$white;
-				}
-			}
-			:global(.illustration) {
-				position: absolute;
-				top: 0;
-				right: 0;
-				transform: translate(2rem, -2rem) rotate(20deg);
-				width: 6rem;
-				height: fit-content;
-				z-index: 1;
-				:global(path) {
-					fill: colors.$main;
-				}
-			}
+		}
+		.grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: gutters.$large;
 		}
 	}
 </style>

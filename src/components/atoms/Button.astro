@@ -9,25 +9,26 @@ const { inverted = false } = Astro.props
 <style lang='scss' scoped>
 	@use '../../styles/colors';
 	@use '../../styles/borders';
+	@use 'sass:color';
 
 	.button {
-		background-color: colors.$accent;
+		background-color: colors.$accent-lighter;
 		color: white;
 		padding: 12px 20px;
 		border: none;
 		border-radius: borders.$radius-small;
 		cursor: pointer;
 		&:hover {
-			background-color: darken(colors.$accent, 10%);
+			background-color: color.adjust(colors.$accent-lighter, $lightness: -10%);
 		}
 	}
 	.button.inverted {
 		background-color: transparent;
-		color: colors.$accent;
+		color: colors.$accent-lighter;
 		border: borders.$button;
 		&:hover {
-			border-color: darken(colors.$accent, 10%);
-			color: darken(colors.$accent, 10%);
+			border-color: color.adjust(colors.$accent-lighter, $lightness: -10%);
+			color: color.adjust(colors.$accent-lighter, $lightness: -10%);
 		}
 	}
 </style>

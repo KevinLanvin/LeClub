@@ -1,0 +1,61 @@
+---
+import Button from './Button.astro'
+
+const { image, title, description, imageAlt, details } = Astro.props
+---
+
+<div class='card'>
+	<img src={image} alt={imageAlt} class='image' />
+	<div class='text'>
+		<h4>{title}</h4>
+		<p class='description'>{description}</p>
+		<p class='details'>{details}</p>
+		<Button>Découvrir l'activité</Button>
+	</div>
+</div>
+
+<style lang='scss' scoped>
+	@use '../../styles/gutters';
+	@use '../../styles/borders';
+	@use '../../styles/colors';
+
+	.card {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		.image {
+			margin-bottom: calc(-2 * (borders.$radius));
+			border-radius: borders.$radius;
+			aspect-ratio: 2;
+			object-fit: cover;
+			object-position: center;
+		}
+		.text {
+			display: flex;
+			flex-grow: 1;
+			background-color: colors.$background;
+			flex-direction: column;
+			align-items: stretch;
+			gap: gutters.$normal;
+			padding: gutters.$large;
+			border: borders.$standard;
+			border-radius: borders.$radius;
+			h4 {
+				font-family: Jomolhari;
+				font-size: 1.5rem;
+				font-weight: 300;
+			}
+			.description {
+				flex-grow: 1;
+			}
+			.details {
+				background-color: colors.$white;
+				padding: gutters.$normal;
+				border-radius: borders.$radius-small;
+				font-weight: 300;
+			}
+		}
+	}
+</style>
