@@ -1,116 +1,39 @@
+---
+import { getCollection } from 'astro:content'
+
+const entries = await getCollection('courses')
+const { date, courses } = entries[0].data
+---
+
 <section class='courses'>
-	<h2>Horaires des cours</h2>
-	<div class='calendar'>
-		<div class='day'>
-			<h3>Mercredi 22 Avril</h3>
-			<div class='interval'>
-				<header>14h30</header>
-				<div class='course'>
-					Tous niveaux
-					<div class='monitors'>
-						<span>Moniteur 1</span><span>Moniteur 2</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class='day'>
-			<h3>Samedi 25 Avril</h3>
-			<div class='interval'>
-				<header>09h30</header>
-				<div class='course'>
-					CSAU
-					<div class='monitors'>
-						<span>Marie</span>
-					</div>
-				</div>
-			</div>
-			<div class='interval'>
-				<header>10h30</header>
-				<div class='course'>
-					Tous niveaux
-					<div class='monitors'>
-						<span>Guillaume Desrousseaux</span>
-						<span>Tof Dalek</span>
-					</div>
-				</div>
-				<div class='course'>
-					Rééducation
-					<div class='monitors'>
-						<span>Kevin Lanvin</span>
-					</div>
-				</div>
-			</div>
-			<div class='interval'>
-				<header>14h30</header>
-				<div class='course'>
-					Chiots 2-4 mois
-					<div class='monitors'>
-						<span>Léna Peycelon</span>
-						<span>Nathalie Wesh</span>
-					</div>
-				</div>
-				<div class='course'>
-					Chiots 4-6 mois
-					<div class='monitors'>
-						<span>Guillaume Desrousseaux</span>
-						<span>Kevin Lanvin</span>
-					</div>
-				</div>
-				<div class='course'>
-					6 mois et plus
-					<div class='monitors'>
-						<span>Badis B</span>
-						<span>Yohann</span>
-					</div>
-				</div>
-				<div class='course'>
-					Intermédiaire / Avancé
-					<div class='monitors'>
-						<span>Anthony</span>
-						<span>Laurent Besse</span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<h2>Le planning des prochains cours</h2>
+	<h3>{date.toLocaleDateString('fr-FR', { dateStyle: 'full' })}</h3>
+	<table>
+		<thead>
+			<tr>
+				<th>Horaire</th>
+				<th>Niveau</th>
+				<th>Moniteurs</th>
+			</tr>
+		</thead>
+		<tbody>
+			{
+				courses.map((course) => (
+					<tr>
+						<td>{course.hour_interval}</td>
+						<td>{course.courseName}</td>
+						<td>{course.teachers.join(' & ')}</td>
+					</tr>
+				))
+			}
+		</tbody>
+	</table>
 </section>
 
 <style scoped lang='scss'>
 	@use '../styles/colors';
 
 	.courses {
-		border: 3px solid colors.$main;
-		background-color: colors.$text;
-	}
-
-	.calendar {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-		gap: 1rem;
-	}
-
-	.day {
-		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-	}
-
-	.interval {
-		padding: 1rem;
-		border-radius: 1rem;
-		background-color: white;
-		display: flex;
-		gap: 0.5rem;
-	}
-
-	.course {
-		background-color: colors.$accent;
-		color: white;
-		padding: 0.5rem;
-		border-radius: 0.5rem;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		gap: 1rem;
+		background-color: colors.$main-light;
 	}
 </style>

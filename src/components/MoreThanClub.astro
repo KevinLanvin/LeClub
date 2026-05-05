@@ -48,12 +48,17 @@ import Button from './atoms/Button.astro'
 		grid-template-columns: 1fr 1fr;
 		gap: gutters.$extra-extra-large;
 		background-color: colors.$white;
+		z-index: 10;
+		position: relative;
 		border-radius: borders.$radius;
 		max-width: gutters.$max-width;
 		margin-inline: auto;
 		margin-top: 5rem;
-		// margin-bottom: -5rem;
+		margin-bottom: -5rem;
 		padding: gutters.$extra-large;
+		:global(+ section) {
+			padding-top: 5rem;
+		}
 		.content {
 			display: flex;
 			flex-direction: column;
