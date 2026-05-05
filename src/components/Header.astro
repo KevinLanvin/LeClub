@@ -37,6 +37,7 @@ import Button from './atoms/Button.astro'
 			</label>
 		</div>
 		<div id='menuMobile' class='header__mobile-menu hidden'>
+			<label class='header__mobile-menu-close' for='hamburger-toggle'>&#x2715;</label>
 			<a href=''>Le Club</a>
 			<div class='expandable'>
 				<span>Les Activités</span>
@@ -54,18 +55,9 @@ import Button from './atoms/Button.astro'
 
 <script>
 	const menuMobile = document.getElementById('menuMobile')
-	const toggle = document.getElementById('hamburger-toggle') as HTMLInputElement | null
-	let lastToggle = 0
-
-	toggle?.addEventListener('change', () => {
-		const now = Date.now()
-		if (now - lastToggle < 400) {
-			if (toggle) toggle.checked = !toggle.checked
-			return
-		}
-		lastToggle = now
-		menuMobile?.classList.toggle('hidden')
-	})
+	document
+		.getElementById('hamburger-toggle')
+		?.addEventListener('change', () => menuMobile?.classList.toggle('hidden'))
 </script>
 
 <style scoped lang='scss'>
@@ -91,7 +83,6 @@ import Button from './atoms/Button.astro'
 		position: sticky;
 		top: 0;
 		z-index: 9999;
-		overflow-x: clip;
 		.nav {
 			max-width: gutters.$max-width;
 			margin: auto;
@@ -257,16 +248,25 @@ import Button from './atoms/Button.astro'
 					display: flex;
 					flex-direction: column;
 					gap: 2rem;
-					position: absolute;
-					right: 0;
-					top: 100%;
+					position: fixed;
+					top: 0;
 					left: 0;
-					height: calc(100vh - 5rem);
+					right: 0;
+					bottom: 0;
+					z-index: 10000;
 					background-color: colors.$white;
 					transform: translateX(0);
 					transition: transform 0.3s;
 					padding: gutters.$large;
 					overflow-y: auto;
+					.header__mobile-menu-close {
+						align-self: flex-end;
+						cursor: pointer;
+						font-size: 1.5rem;
+						line-height: 1;
+						padding: 0.25rem 0.5rem;
+						margin-bottom: gutters.$small;
+					}
 					span {
 						margin: 0;
 						& > a {
