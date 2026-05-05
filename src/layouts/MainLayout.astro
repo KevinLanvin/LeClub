@@ -23,9 +23,9 @@ const { title } = Astro.props
 
 	<body>
 		<Header />
-		<div class='content'>
+		<main class='content'>
 			<slot />
-		</div>
+		</main>
 		<script>
 			if (window.netlifyIdentity) {
 				window.netlifyIdentity.on('init', (user) => {
@@ -39,11 +39,11 @@ const { title } = Astro.props
 		</script>
 	</body>
 
+	<style>
+		.content {
+			overflow: hidden;
+		}
+	</style>
 
 
-<style>
-	.content {
-		overflow-x: hidden;
-	}
-</style>
 </html>
