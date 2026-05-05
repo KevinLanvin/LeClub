@@ -26,7 +26,6 @@ import Surprise from '../icons/surprise.astro'
 		<img src='/images/intro.png' alt='Dog' />
 		<Surprise class='surprise' />
 	</div>
-	<div class='logo'></div>
 	<div class='informations'>
 		<div class='information'>
 			<span class='icon'><Location /></span>
@@ -44,6 +43,7 @@ import Surprise from '../icons/surprise.astro'
 			<span class='details'>fait partie de la Saint Hubert du Nord</span>
 		</div>
 	</div>
+	<div class='logo'></div>
 </section>
 
 <style lang='scss' scoped>
@@ -166,9 +166,10 @@ import Surprise from '../icons/surprise.astro'
 	@media (max-width: 1440px) {
 		.introduction {
 			max-width: 100%;
-			margin-bottom: 30rem;
+			margin-bottom: 5rem;
+			padding-inline: gutters.$normal;
 			.main {
-				padding: 5rem 3rem 12rem 3rem;
+				padding: gutters.$extra-extra-large;
 				max-width: 100%;
 				h1 {
 					font-size: 2rem;
@@ -179,17 +180,20 @@ import Surprise from '../icons/surprise.astro'
 				}
 			}
 			.informations {
+				position: relative;
 				gap: gutters.$normal;
-				max-width: 90%;
-				margin: auto;
-				left: 5%;
+				max-width: 100%;
+				left: unset;
 				bottom: unset;
-				top: 100%;
 				transform: unset;
 				grid-template-columns: 1fr;
 				grid-template-rows: repeat(3, 1fr);
 			}
 			.illustration {
+				position: relative;
+				right: unset;
+				bottom: unset;
+				width: 100%;
 				img {
 					display: block;
 				}
@@ -202,7 +206,7 @@ import Surprise from '../icons/surprise.astro'
 			}
 			.logo {
 				width: 80%;
-				top: 22%;
+				top: 8rem;
 			}
 		}
 	}

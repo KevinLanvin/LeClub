@@ -49,7 +49,7 @@ import Button from './atoms/Button.astro'
 		gap: gutters.$extra-extra-large;
 		background-color: colors.$white;
 		border-radius: borders.$radius;
-		width: gutters.$max-width;
+		max-width: gutters.$max-width;
 		margin-inline: auto;
 		margin-top: 5rem;
 		// margin-bottom: -5rem;
@@ -75,6 +75,15 @@ import Button from './atoms/Button.astro'
 			height: 100%;
 			object-fit: cover;
 			border-radius: borders.$radius;
+		}
+	}
+
+	@media (max-width: 1440px) {
+		.more-than-club {
+			width: calc(100% - 2 * (gutters.$normal));
+			margin-inline: gutters.$normal;
+			grid-template-columns: 1fr;
+			padding: gutters.$normal;
 		}
 	}
 </style>
