@@ -1,6 +1,6 @@
 import { defineCollection, z } from "astro:content";
 
-const prerequisiteValues = [
+export const coursesValues: string[] = [
   "2 - 4 mois",
   "4 - 6 mois",
   "6 mois et +",
@@ -8,7 +8,7 @@ const prerequisiteValues = [
   "Intermédiaire",
   "Avancé",
   "CSAU",
-] as const;
+];
 
 const teachers = [
   "sandrine",
@@ -35,7 +35,7 @@ const coursesCollection = defineCollection({
     courses: z.array(
       z.object({
         hour_interval: z.string(),
-        courseName: z.enum(prerequisiteValues),
+        courseName: z.enum(coursesValues),
         teachers: z.array(z.enum(teachers)),
       }),
     ),

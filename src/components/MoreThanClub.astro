@@ -57,7 +57,7 @@ import Button from './atoms/Button.astro'
 		margin-bottom: -5rem;
 		padding: gutters.$extra-large;
 		:global(+ section) {
-			padding-top: 5rem;
+			padding-top: 10rem;
 		}
 		.content {
 			display: flex;
@@ -85,10 +85,16 @@ import Button from './atoms/Button.astro'
 
 	@media (max-width: 1440px) {
 		.more-than-club {
-			width: calc(100% - 2 * (gutters.$normal));
+			width: gutters.$mobile-width;
 			margin-inline: gutters.$normal;
 			grid-template-columns: 1fr;
 			padding: gutters.$normal;
+			.content {
+				align-items: stretch;
+			}
+			.planning {
+				font-size: 0.8rem;
+			}
 		}
 	}
 </style>

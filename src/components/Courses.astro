@@ -1,39 +1,219 @@
 ---
 import { getCollection } from 'astro:content'
+import HeaderAfter from '../icons/header-after.astro'
+import HeaderBefore from '../icons/header-before.astro'
+import type { coursesValues } from '../content/config'
+import Button from './atoms/Button.astro'
 
 const entries = await getCollection('courses')
 const { date, courses } = entries[0].data
+const capitalize = ([first, ...rest]: string): string =>
+	`${first.toUpperCase()}${rest.join('')}`
+
+const courseColor: Record<(typeof coursesValues)[number], string> = {
+	'2 - 4 mois': 'green',
+	'4 - 6 mois': 'green',
+	'6 mois et +': 'green',
+	Rééducation: 'blue',
+	Intermédiaire: 'orange',
+	Avancé: 'red',
+	CSAU: 'red',
+}
+
+const monitorAvatars = {
+	sandrine: 'monitrice.jpg',
+	laurent: 'monitor.jpg',
+	fred: 'monitor.jpg',
+	lena: 'monitor.jpg',
+	nathalie: 'monitor.jpg',
+	yohann: 'monitor.jpg',
+	marie: 'monitor.jpg',
+	patrick: 'monitor.jpg',
+	anthony: 'monitor.jpg',
+	valerie: 'monitor.jpg',
+	christophe: 'monitor.jpg',
+	badis: 'monitor.jpg',
+	kevin: 'monitor.jpg',
+	guillaume: 'monitor.jpg',
+	dominique: 'monitor.jpg',
+}
 ---
 
 <section class='courses'>
-	<h2>Le planning des prochains cours</h2>
-	<h3>{date.toLocaleDateString('fr-FR', { dateStyle: 'full' })}</h3>
-	<table>
+	<div class='title'>
+		<HeaderBefore />
+		<h2>Le planning des<br /> prochains cours</h2>
+		<HeaderAfter />
+	</div>
+	<table class='planning'>
 		<thead>
 			<tr>
+				<th>Date</th>
 				<th>Horaire</th>
-				<th>Niveau</th>
+				<th>Cours</th>
 				<th>Moniteurs</th>
 			</tr>
 		</thead>
 		<tbody>
 			{
-				courses.map((course) => (
+				courses.map((course, index) => (
 					<tr>
+						{index === 0 && (
+							<td class='date' rowspan='0'>
+								{date.toLocaleDateString('fr-FR', { dateStyle: 'full' })}
+							</td>
+						)}
 						<td>{course.hour_interval}</td>
-						<td>{course.courseName}</td>
-						<td>{course.teachers.join(' & ')}</td>
+						<td>
+							<span
+								class:list={['course-name', courseColor[course.courseName]]}
+							>
+								{course.courseName}
+							</span>
+						</td>
+						<td class='monitors'>
+							<div class='avatars'>
+								{course.teachers.map((monitor) => (
+									<img
+										class='avatar'
+										src={`/images/moniteurs/${monitorAvatars[monitor]}`}
+									/>
+								))}
+							</div>
+							<span class='names'>
+								{course.teachers.map(capitalize).join(' & ')}
+							</span>
+						</td>
 					</tr>
 				))
 			}
 		</tbody>
 	</table>
+	<p>Le planning peut évoluer. Consultez-le régulièrement</p>
+	<Button>Voir le planning et les tarifs</Button>
 </section>
 
 <style scoped lang='scss'>
 	@use '../styles/colors';
+	@use '../styles/gutters';
+	@use '../styles/borders';
 
 	.courses {
 		background-color: colors.$main-light;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: gutters.$extra-extra-large;
+		padding-block: 5rem;
+		.title {
+			display: flex;
+			gap: gutters.$normal;
+			h2 {
+				text-align: center;
+				font-family: Jomolhari;
+				font-size: 3rem;
+				line-height: 3rem;
+				font-weight: 400;
+				::before {
+					content: url('../icons/header-before.astro');
+				}
+			}
+		}
+		.planning {
+			padding: gutters.$large;
+			border-radius: borders.$radius;
+			background-color: colors.$white;
+			text-align: center;
+			width: gutters.$max-width;
+			tbody > tr:nth-child(2n) {
+				background-color: colors.$table-row;
+			}
+			tbody > tr:nth-child(2n + 1) {
+				background-color: colors.$background;
+			}
+			td,
+			th {
+				border: 2px solid colors.$white;
+				padding-block: gutters.$normal;
+				padding-inline: gutters.$small;
+			}
+			.date {
+				text-transform: capitalize;
+				background-color: colors.$table-row;
+			}
+			.course-name {
+				display: block;
+				margin: auto;
+				padding: gutters.$extra-small gutters.$normal;
+				border-radius: borders.$radius;
+				background-color: colors.$white;
+				font-weight: bold;
+			}
+			.green {
+				background-color: colors.$main-light;
+			}
+			.orange {
+				background-color: colors.$accent-light;
+			}
+			.red {
+				background-color: colors.$red;
+			}
+			.blue {
+				background-color: colors.$blue;
+			}
+			.monitors {
+				display: flex;
+				align-items: center;
+				gap: gutters.$normal;
+				justify-content: center;
+			}
+			.avatars {
+				display: flex;
+				align-items: center;
+				margin-right: 1rem;
+				.avatar {
+					width: 3rem;
+					height: 3rem;
+					border-radius: 50%;
+					border: 2px solid colors.$white;
+					margin-right: -1rem;
+					object-fit: cover;
+				}
+			}
+		}
+	}
+
+	@media (max-width: 1440px) {
+		.courses {
+			width: 100%;
+			padding-inline: 1rem;
+			.title h2 {
+				font-size: 2rem;
+			}
+			.planning {
+				width: 100%;
+				font-size: 0.5rem;
+				padding: gutters.$normal;
+				.date {
+					writing-mode: sideways-lr;
+				}
+				.course-name {
+					padding: gutters.$extra-small gutters.$small;
+				}
+				.monitors {
+					padding-inline: gutters.$small;
+					.avatars .avatar {
+						width: 2rem;
+						height: 2rem;
+					}
+					.names {
+						display: none;
+					}
+				}
+			}
+			p {
+				text-align: center;
+			}
+		}
 	}
 </style>
