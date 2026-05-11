@@ -60,7 +60,11 @@ const monitorAvatars = {
 					<tr>
 						{index === 0 && (
 							<td class='date' rowspan='0'>
-								{date.toLocaleDateString('fr-FR', { dateStyle: 'full' })}
+								{date.toLocaleDateString('fr-FR', {
+									weekday: 'long',
+									day: 'numeric',
+									month: 'long',
+								})}
 							</td>
 						)}
 						<td>{course.hour_interval}</td>
@@ -89,6 +93,40 @@ const monitorAvatars = {
 			}
 		</tbody>
 	</table>
+	<div class='planning-mobile'>
+		<div class='date'>
+			{
+				date.toLocaleDateString('fr-FR', {
+					weekday: 'long',
+					day: 'numeric',
+					month: 'long',
+				})
+			}
+		</div>
+		{
+			courses.map((course) => (
+				<div class='course'>
+					<div>{course.hour_interval}</div>
+					<div class:list={['course-name', courseColor[course.courseName]]}>
+						{course.courseName}
+					</div>
+					<div class='monitors'>
+						<div class='avatars'>
+							{course.teachers.map((monitor) => (
+								<img
+									class='avatar'
+									src={`/images/moniteurs/${monitorAvatars[monitor]}`}
+								/>
+							))}
+						</div>
+						<span class='names'>
+							{course.teachers.map(capitalize).join(' & ')}
+						</span>
+					</div>
+				</div>
+			))
+		}
+	</div>
 	<p>Le planning peut évoluer. Consultez-le régulièrement</p>
 	<Button>Voir le planning et les tarifs</Button>
 </section>
@@ -119,6 +157,50 @@ const monitorAvatars = {
 				}
 			}
 		}
+		.date {
+			text-transform: capitalize;
+			background-color: colors.$table-row;
+		}
+		.course-name {
+			display: block;
+			margin: auto;
+			padding: gutters.$extra-small gutters.$normal;
+			border-radius: borders.$radius;
+			background-color: colors.$white;
+			font-weight: bold;
+			width: fit-content;
+		}
+		.green {
+			background-color: colors.$main-light;
+		}
+		.orange {
+			background-color: colors.$accent-light;
+		}
+		.red {
+			background-color: colors.$red;
+		}
+		.blue {
+			background-color: colors.$blue;
+		}
+		.monitors {
+			display: flex;
+			align-items: center;
+			gap: gutters.$normal;
+			justify-content: center;
+		}
+		.avatars {
+			display: flex;
+			align-items: center;
+			margin-right: 1rem;
+			.avatar {
+				width: 3rem;
+				height: 3rem;
+				border-radius: 50%;
+				border: 2px solid colors.$white;
+				margin-right: -1rem;
+				object-fit: cover;
+			}
+		}
 		.planning {
 			padding: gutters.$large;
 			border-radius: borders.$radius;
@@ -137,49 +219,9 @@ const monitorAvatars = {
 				padding-block: gutters.$normal;
 				padding-inline: gutters.$small;
 			}
-			.date {
-				text-transform: capitalize;
-				background-color: colors.$table-row;
-			}
-			.course-name {
-				display: block;
-				margin: auto;
-				padding: gutters.$extra-small gutters.$normal;
-				border-radius: borders.$radius;
-				background-color: colors.$white;
-				font-weight: bold;
-			}
-			.green {
-				background-color: colors.$main-light;
-			}
-			.orange {
-				background-color: colors.$accent-light;
-			}
-			.red {
-				background-color: colors.$red;
-			}
-			.blue {
-				background-color: colors.$blue;
-			}
-			.monitors {
-				display: flex;
-				align-items: center;
-				gap: gutters.$normal;
-				justify-content: center;
-			}
-			.avatars {
-				display: flex;
-				align-items: center;
-				margin-right: 1rem;
-				.avatar {
-					width: 3rem;
-					height: 3rem;
-					border-radius: 50%;
-					border: 2px solid colors.$white;
-					margin-right: -1rem;
-					object-fit: cover;
-				}
-			}
+		}
+		.planning-mobile {
+			display: none;
 		}
 	}
 
@@ -191,24 +233,33 @@ const monitorAvatars = {
 				font-size: 2rem;
 			}
 			.planning {
+				display: none;
+			}
+			.planning-mobile {
 				width: 100%;
-				font-size: 0.5rem;
-				padding: gutters.$normal;
+				display: flex;
+				flex-direction: column;
+				border: borders.$button;
+				border-radius: borders.$radius;
+				overflow: hidden;
+				> *:nth-child(2n + 1) {
+					background-color: colors.$table-row;
+				}
+				> *:nth-child(2n) {
+					background-color: colors.$background;
+				}
 				.date {
-					writing-mode: sideways-lr;
+					padding: gutters.$extra-large;
+					text-align: center;
+					font-weight: bold;
+					font-size: 1.25rem;
 				}
-				.course-name {
-					padding: gutters.$extra-small gutters.$small;
-				}
-				.monitors {
-					padding-inline: gutters.$small;
-					.avatars .avatar {
-						width: 2rem;
-						height: 2rem;
-					}
-					.names {
-						display: none;
-					}
+				.course {
+					padding: gutters.$extra-large;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					gap: gutters.$normal;
 				}
 			}
 			p {

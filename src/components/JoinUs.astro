@@ -1,8 +1,78 @@
+---
+import Button from './atoms/Button.astro'
+---
+
 <section class='join-us'>
-	<p>
-		Vous voulez passer de bons moments et renforcer le lien avec votre chien ?
-	</p>
-	<button>Rejoignez-nous</button>
+	<div class='how'>
+		<h3>Comment rejoindre le club ?</h3>
+		<div class='steps'>
+			<div class='step'>
+				<span class='badge'>1</span>
+				<h4>Venez découvrir <span class='accent'>sans rendez-vous</span> !</h4>
+				<p>
+					Passez nous voir <em
+						>un samedi pour observer ou poser vos questions</em
+					>
+				</p>
+			</div>
+			<div class='step'>
+				<span class='badge'>2</span>
+				<h4>Participez à une <span class='accent'>séance gratuite</span> !</h4>
+				<p>
+					Testez une séance avec votre chien pour voir si les cours vous
+					conviennent.
+				</p>
+			</div>
+			<div class='step'>
+				<span class='badge'>3</span>
+				<h4>Préparez votre inscription !</h4>
+				<p>Rejoignez le club et profitez des activités toute l'année.</p>
+			</div>
+		</div>
+		<div class='checklist'>
+			<div class='illu'></div>
+			<div class='text'>
+				<h4>A prévoir pour l'inscription et le cours d'essai</h4>
+				<ul>
+					<li>Carnet de vaccination</li>
+					<li>Laisse (1m80 non enrouleuse)</li>
+					<li>Collier plat</li>
+					<li>Friandises et jouet</li>
+					<li>Un grand sourire</li>
+				</ul>
+			</div>
+			<div class='surprise'></div>
+		</div>
+		<Button>Nous contacter</Button>
+	</div>
+	<div class='details'>
+		<h4>Infos pratiques</h4>
+		<div class='detail'>
+			<div class='illu'></div>
+			<div class='text'>
+				<h5>Horaires</h5>
+				<p>Le samedi de 09h30 à 11h30 et de 14h30 à 15h30</p>
+				<a href=''>Voir le planning -></a>
+			</div>
+		</div>
+		<div class='detail'>
+			<div class='illu'></div>
+			<div class='text'>
+				<h5>Lieu</h5>
+				<p>Route de Furnes<br />Teteghem</p>
+				<a href=''>Voir l'itinéraire -></a>
+				<p>Parking gratuit</p>
+			</div>
+		</div>
+		<div class='facebook'>
+			<span class='find-us'>Retrouvez-nous sur :</span>
+			<a
+				href='https://www.facebook.com/votre-page'
+				target='_blank'
+				rel='noopener noreferrer'>logo</a
+			>
+		</div>
+	</div>
 </section>
 
 <style scoped lang='scss'>
