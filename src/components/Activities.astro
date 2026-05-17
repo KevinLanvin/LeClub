@@ -45,12 +45,13 @@ import Card from './atoms/Card.astro'
 	@use '../styles/colors';
 	@use '../styles/borders';
 	@use '../styles/gutters';
+	@use '../styles/fonts';
 
 	.activities {
 		display: grid;
 		gap: gutters.$extra-extra-large;
 		grid-template-columns: 2fr 5fr;
-		max-width: calc(gutters.$max-width - 10rem);
+		max-width: gutters.$small-max-width;
 		margin: auto;
 		.title {
 			display: flex;
@@ -64,10 +65,10 @@ import Card from './atoms/Card.astro'
 				color: colors.$text;
 			}
 			h2 {
-				font-size: 3rem;
-				font-family: Jomolhari;
+				font-size: fonts.$title;
+				font-family: fonts.$family-title;
 				font-weight: 400;
-				line-height: 3rem;
+				line-height: fonts.$title;
 				.accent {
 					color: colors.$accent;
 				}
@@ -86,6 +87,12 @@ import Card from './atoms/Card.astro'
 			grid-template-columns: 1fr;
 			padding: gutters.$normal;
 			gap: 5rem;
+			.title {
+				h2 {
+					font-size: fonts.$title-mobile;
+					line-height: fonts.$title-mobile;
+				}
+			}
 		}
 	}
 </style>

@@ -42,6 +42,7 @@ import Button from './atoms/Button.astro'
 	@use '../styles/colors';
 	@use '../styles/gutters';
 	@use '../styles/borders';
+	@use '../styles/fonts';
 
 	.more-than-club {
 		display: grid;
@@ -65,9 +66,9 @@ import Button from './atoms/Button.astro'
 			gap: 2rem;
 			align-items: start;
 			h2 {
-				font-size: 3rem;
-				font-family: Jomolhari;
-				line-height: 3rem;
+				font-size: fonts.$title;
+				font-family: fonts.$family-title;
+				line-height: fonts.$title;
 				font-weight: 400;
 				.accent {
 					color: colors.$accent;
@@ -91,6 +92,11 @@ import Button from './atoms/Button.astro'
 			padding: gutters.$normal;
 			.content {
 				align-items: stretch;
+				h2 {
+					font-size: fonts.$title-mobile;
+					font-family: fonts.$family-title;
+					line-height: fonts.$title-mobile;
+				}
 			}
 			.planning {
 				font-size: 0.8rem;

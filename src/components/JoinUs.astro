@@ -1,14 +1,20 @@
 ---
+import Arrow from '../icons/arrow.astro'
+import Shop from '../icons/shop.astro'
+import SurpriseAccent from '../icons/surprise-accent.astro'
+import Time from '../icons/time.astro'
 import Button from './atoms/Button.astro'
+import LocationBis from '../icons/location-bis.astro'
+import Facebook from '../icons/facebook.astro'
 ---
 
 <section class='join-us'>
 	<div class='how'>
-		<h3>Comment rejoindre le club ?</h3>
+		<h2>Comment rejoindre le club ?</h2>
 		<div class='steps'>
 			<div class='step'>
 				<span class='badge'>1</span>
-				<h4>Venez découvrir <span class='accent'>sans rendez-vous</span> !</h4>
+				<h3>Venez découvrir <span class='accent'>sans rendez-vous</span> !</h3>
 				<p>
 					Passez nous voir <em
 						>un samedi pour observer ou poser vos questions</em
@@ -17,7 +23,7 @@ import Button from './atoms/Button.astro'
 			</div>
 			<div class='step'>
 				<span class='badge'>2</span>
-				<h4>Participez à une <span class='accent'>séance gratuite</span> !</h4>
+				<h3>Participez à une <span class='accent'>séance gratuite</span> !</h3>
 				<p>
 					Testez une séance avec votre chien pour voir si les cours vous
 					conviennent.
@@ -25,12 +31,14 @@ import Button from './atoms/Button.astro'
 			</div>
 			<div class='step'>
 				<span class='badge'>3</span>
-				<h4>Préparez votre inscription !</h4>
+				<h3>Préparez votre inscription !</h3>
 				<p>Rejoignez le club et profitez des activités toute l'année.</p>
 			</div>
 		</div>
 		<div class='checklist'>
-			<div class='illu'></div>
+			<div class='illu'>
+				<Shop class='shop' />
+			</div>
 			<div class='text'>
 				<h4>A prévoir pour l'inscription et le cours d'essai</h4>
 				<ul>
@@ -41,35 +49,39 @@ import Button from './atoms/Button.astro'
 					<li>Un grand sourire</li>
 				</ul>
 			</div>
-			<div class='surprise'></div>
+			<div class='surprise'>
+				<SurpriseAccent class='surprise-icon' />
+			</div>
 		</div>
 		<Button>Nous contacter</Button>
 	</div>
 	<div class='details'>
-		<h4>Infos pratiques</h4>
+		<h3>Infos pratiques</h3>
 		<div class='detail'>
-			<div class='illu'></div>
+			<div class='illu'>
+				<Time />
+			</div>
 			<div class='text'>
-				<h5>Horaires</h5>
-				<p>Le samedi de 09h30 à 11h30 et de 14h30 à 15h30</p>
-				<a href=''>Voir le planning -></a>
+				<h4>Horaires</h4>
+				<p>Le samedi à 14h</p>
+				<a href=''>Voir le planning <Arrow /></a>
 			</div>
 		</div>
 		<div class='detail'>
-			<div class='illu'></div>
+			<div class='illu'><LocationBis /></div>
 			<div class='text'>
-				<h5>Lieu</h5>
+				<h4>Lieu</h4>
 				<p>Route de Furnes<br />Teteghem</p>
-				<a href=''>Voir l'itinéraire -></a>
 				<p>Parking gratuit</p>
+				<a href=''>Voir l'itinéraire -></a>
 			</div>
 		</div>
 		<div class='facebook'>
-			<span class='find-us'>Retrouvez-nous sur :</span>
+			<h4 class='find-us'>Retrouvez-nous sur :</h4>
 			<a
 				href='https://www.facebook.com/votre-page'
 				target='_blank'
-				rel='noopener noreferrer'>logo</a
+				rel='noopener noreferrer'><Facebook /></a
 			>
 		</div>
 	</div>
@@ -77,14 +89,161 @@ import Button from './atoms/Button.astro'
 
 <style scoped lang='scss'>
 	@use '../styles/colors';
+	@use '../styles/borders';
+	@use '../styles/gutters';
+	@use '../styles/fonts';
 
 	.join-us {
-		button {
-			background-color: colors.$accent;
-			color: white;
-			border: 1px solid white;
-			padding: 0.5rem 1rem;
-			border-radius: 1rem;
+		width: gutters.$small-max-width;
+		margin: gutters.$extra-large auto;
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		gap: gutters.$extra-extra-large;
+		.how {
+			border: borders.$standard;
+			padding: gutters.$extra-large;
+			border-radius: borders.$radius;
+			display: flex;
+			flex-direction: column;
+			gap: gutters.$large;
+			h2 {
+				font-family: fonts.$family-title;
+				font-size: fonts.$title;
+				color: colors.$main;
+			}
+			.steps {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				gap: gutters.$large;
+				.step {
+					display: flex;
+					flex-direction: column;
+					gap: gutters.$small;
+					.badge {
+						background-color: colors.$main;
+						width: 2rem;
+						height: 2rem;
+						border-radius: 100%;
+						color: colors.$white;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						font-family: fonts.$family-title;
+					}
+					h3 {
+						font-family: fonts.$family-title;
+						font-size: fonts.$subtitle;
+						font-weight: 400;
+						.accent {
+							color: colors.$accent;
+						}
+					}
+					em {
+						font-weight: bold;
+						font-style: normal;
+					}
+				}
+			}
+			.checklist {
+				display: flex;
+				gap: gutters.$large;
+				background-color: colors.$main;
+				padding: gutters.$large;
+				border-radius: borders.$radius-small;
+				color: colors.$white;
+				.illu {
+					width: 4rem;
+				}
+				.text {
+					display: flex;
+					flex-direction: column;
+					gap: gutters.$large;
+					flex: 1;
+					h4 {
+						font-family: fonts.$family-title;
+						font-size: fonts.$subtitle;
+						line-height: fonts.$subtitle;
+						font-weight: 400;
+					}
+					ul {
+						margin-left: gutters.$large;
+					}
+				}
+				.surprise {
+					width: 5rem;
+					:deep(.surprise-icon) {
+						width: 5rem;
+						height: 5rem;
+					}
+				}
+			}
+		}
+		.details {
+			background-color: colors.$white;
+			border-radius: borders.$radius;
+			padding: gutters.$extra-large;
+			display: flex;
+			flex-direction: column;
+			gap: gutters.$large;
+			height: 100%;
+			h3 {
+				font-family: fonts.$family-title;
+				font-weight: 400;
+				font-size: fonts.$subtitle;
+				line-height: fonts.$subtitle;
+			}
+			.detail {
+				display: flex;
+				gap: gutters.$large;
+				a {
+					color: colors.$accent-lighter;
+					display: flex;
+					align-items: center;
+					gap: gutters.$small;
+				}
+			}
+			.facebook {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				margin-top: auto;
+			}
+		}
+	}
+
+	@media (max-width: 1440px) {
+		.join-us {
+			width: calc(100% - 2rem);
+			margin-inline: 1rem;
+			display: flex;
+			flex-direction: column;
+			gap: gutters.$extra-large;
+			.how {
+				padding: gutters.$normal;
+				h2 {
+					font-size: fonts.$title-mobile;
+					line-height: fonts.$title-mobile;
+				}
+				.steps {
+					display: flex;
+					flex-direction: column;
+					p {
+						text-align: justify;
+					}
+				}
+				.checklist {
+					display: flex;
+					flex-direction: column;
+					.surprise {
+						display: flex;
+						justify-content: end;
+						height: 2rem;
+						:deep(.surprise-icon) {
+							width: 2rem;
+						}
+					}
+				}
+			}
 		}
 	}
 </style>

@@ -6,4 +6,5 @@ $extra-large: 2rem;
 $extra-extra-large: 2.5rem;
 
 $max-width: 1440px;
+$small-max-width: calc($max-width - 10rem);
 $mobile-width: calc(100% - 2 * $normal);

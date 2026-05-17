@@ -135,6 +135,7 @@ const monitorAvatars = {
 	@use '../styles/colors';
 	@use '../styles/gutters';
 	@use '../styles/borders';
+	@use '../styles/fonts';
 
 	.courses {
 		background-color: colors.$main-light;
@@ -148,9 +149,9 @@ const monitorAvatars = {
 			gap: gutters.$normal;
 			h2 {
 				text-align: center;
-				font-family: Jomolhari;
-				font-size: 3rem;
-				line-height: 3rem;
+				font-family: fonts.$family-title;
+				font-size: fonts.$title;
+				line-height: fonts.$title;
 				font-weight: 400;
 				::before {
 					content: url('../icons/header-before.astro');
@@ -206,7 +207,7 @@ const monitorAvatars = {
 			border-radius: borders.$radius;
 			background-color: colors.$white;
 			text-align: center;
-			width: gutters.$max-width;
+			width: gutters.$small-max-width;
 			tbody > tr:nth-child(2n) {
 				background-color: colors.$table-row;
 			}
@@ -230,7 +231,8 @@ const monitorAvatars = {
 			width: 100%;
 			padding-inline: 1rem;
 			.title h2 {
-				font-size: 2rem;
+				font-size: fonts.$title-mobile;
+				line-height: fonts.$title-mobile;
 			}
 			.planning {
 				display: none;

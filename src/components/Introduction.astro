@@ -51,15 +51,16 @@ import Surprise from '../icons/surprise.astro'
 	@use '../styles/gutters';
 	@use '../styles/borders';
 	@use '../styles/shadows';
+	@use '../styles/fonts';
 
 	.introduction {
-		max-width: gutters.$max-width;
+		max-width: gutters.$small-max-width;
 		margin: auto;
 		color: colors.$text;
 		margin-bottom: 10rem;
 		position: relative;
 		.main {
-			padding: 12rem 5rem;
+			padding: 10rem 0;
 			display: flex;
 			flex-direction: column;
 			gap: gutters.$normal;
@@ -73,10 +74,10 @@ import Surprise from '../icons/surprise.astro'
 			}
 			h1 {
 				color: colors.$main;
-				font-family: Jomolhari;
+				font-family: fonts.$family-title;
 				font-weight: 400;
-				font-size: 3rem;
-				line-height: 3rem;
+				font-size: fonts.$title;
+				line-height: fonts.$title;
 				.orange {
 					color: colors.$accent;
 				}
@@ -128,8 +129,7 @@ import Surprise from '../icons/surprise.astro'
 			position: absolute;
 			bottom: 0;
 			transform: translateY(50%);
-			max-width: calc(gutters.$max-width - 10rem);
-			left: 5rem;
+			left: 0;
 			width: 100%;
 			.information {
 				padding: gutters.$normal;
@@ -174,8 +174,8 @@ import Surprise from '../icons/surprise.astro'
 				padding: gutters.$extra-extra-large;
 				max-width: 100%;
 				h1 {
-					font-size: 2rem;
-					line-height: 2rem;
+					font-size: fonts.$title-mobile;
+					line-height: fonts.$title-mobile;
 				}
 				.actions {
 					flex-direction: column;
