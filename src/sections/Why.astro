@@ -1,0 +1,146 @@
+---
+import Button from '../components/atoms/Button.astro'
+---
+
+<section class='why'>
+	<img
+		src='/public/images/why.jpg'
+		alt='Des moniteurs et des chiens dans une tondeuse et sa remorque'
+	/>
+	<div class='text'>
+		<h2>Vous vous reconnaissez là dedans ?</h2>
+		<div class='quotes'>
+			<div class='quote'>
+				<h3>Mon chien n'écoute pas toujours</h3>
+				<p>
+					La marche en laisse ou le rappel, quand il y a d'autres chiens c'est
+					pas gagné !
+				</p>
+			</div>
+			<div class='quote'>
+				<h3>Je veux un lien plus fort avec mon chien</h3>
+				<p>Plus de complicité, plus de partage, plus de plaisir !</p>
+			</div>
+			<div class='quote'>
+				<h3>Je ne sais pas comment m'y prendre</h3>
+				<p>J'ai tout essayé mais je ne sais plus quoi faire !</p>
+			</div>
+			<div class='quote'>
+				<h3>J'ai peur de mal faire</h3>
+				<p>Je veux bien faire mais j'ai peur de perturber mon chien !</p>
+			</div>
+			<div class='quote'>
+				<h3>Mes balades sont un enfer</h3>
+				<p>Il tire en laisse, aboie ... Impossible de profiter pleinement !</p>
+			</div>
+		</div>
+	</div>
+	<div class='answer'>
+		<h2>...</h2>
+		<h2>Si oui, le plus simple, c'est de venir voir comment ca se passe !</h2>
+	</div>
+	<div class='actions'>
+		<Button href='/planning'>Voir le planning</Button>
+		<Button href='/contact' inverted>Nous contacter</Button>
+	</div>
+</section>
+
+<style scoped lang='scss'>
+	@use '../styles/gutters';
+	@use '../styles/borders';
+	@use '../styles/colors';
+	@use '../styles/fonts';
+
+	.why {
+		width: gutters.$max-width;
+		margin-inline: auto;
+		padding-block: gutters.$extra-extra-large;
+		img {
+			width: 100%;
+			object-fit: cover;
+			border-radius: borders.$radius;
+			aspect-ratio: 2.62;
+		}
+		.text {
+			width: 36rem;
+			background-color: colors.$white;
+			border-radius: borders.$radius;
+			padding: gutters.$extra-large;
+			margin-top: -15rem;
+			margin-inline: auto;
+			position: relative;
+			z-index: 1;
+			display: flex;
+			flex-direction: column;
+			align-items: stretch;
+			gap: gutters.$extra-large;
+			h2 {
+				font-family: fonts.$family-title;
+				font-size: fonts.$title;
+				line-height: fonts.$title;
+				text-align: center;
+			}
+			.quotes {
+				display: flex;
+				flex-direction: column;
+				gap: gutters.$large;
+				text-align: center;
+				.quote {
+					width: calc(100% - 8rem);
+					margin-inline: auto;
+					position: relative;
+					&::before {
+						content: url('/images/quote-start.svg');
+						right: calc(100% + 1rem);
+						position: absolute;
+						top: 50%;
+						width: 3rem;
+						height: 3rem;
+						transform: translateY(-50%);
+					}
+					&::after {
+						content: url('/images/quote-end.svg');
+						position: absolute;
+						left: calc(100% + 1rem);
+						top: 50%;
+						width: 3rem;
+						height: 3rem;
+						transform: translateY(-50%);
+					}
+				}
+			}
+		}
+		.answer {
+			text-align: center;
+			width: 60%;
+			margin-inline: auto;
+			display: flex;
+			flex-direction: column;
+			gap: gutters.$extra-large;
+			padding-block: gutters.$extra-large;
+			h2 {
+				font-family: fonts.$family-title;
+				font-size: fonts.$title;
+				line-height: fonts.$title;
+				text-align: center;
+			}
+		}
+		.actions {
+			display: flex;
+			justify-content: center;
+			gap: gutters.$large;
+		}
+	}
+	@media (max-width: 1440px) {
+		.why {
+			width: 100%;
+			img {
+				border-radius: 0;
+			}
+			.text {
+				width: gutters.$mobile-width;
+				margin-top: gutters.$extra-large;
+			}
+		}
+	}
+</style>
