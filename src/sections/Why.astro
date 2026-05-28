@@ -4,7 +4,7 @@ import Button from '../components/atoms/Button.astro'
 
 <section class='why'>
 	<img
-		src='/public/images/why.jpg'
+		src='/images/why.jpg'
 		alt='Des moniteurs et des chiens dans une tondeuse et sa remorque'
 	/>
 	<div class='text'>
@@ -50,6 +50,7 @@ import Button from '../components/atoms/Button.astro'
 	@use '../styles/borders';
 	@use '../styles/colors';
 	@use '../styles/fonts';
+	@use '../styles/shadows';
 
 	.why {
 		width: gutters.$max-width;
@@ -74,6 +75,7 @@ import Button from '../components/atoms/Button.astro'
 			flex-direction: column;
 			align-items: stretch;
 			gap: gutters.$extra-large;
+			box-shadow: shadows.$card;
 			h2 {
 				font-family: fonts.$family-title;
 				font-size: fonts.$title;
@@ -90,7 +92,7 @@ import Button from '../components/atoms/Button.astro'
 					margin-inline: auto;
 					position: relative;
 					&::before {
-						content: url('/images/quote-start.svg');
+						content: url('/icons/quote-start.svg');
 						right: calc(100% + 1rem);
 						position: absolute;
 						top: 50%;
@@ -99,7 +101,7 @@ import Button from '../components/atoms/Button.astro'
 						transform: translateY(-50%);
 					}
 					&::after {
-						content: url('/images/quote-end.svg');
+						content: url('/icons/quote-end.svg');
 						position: absolute;
 						left: calc(100% + 1rem);
 						top: 50%;
@@ -134,12 +136,53 @@ import Button from '../components/atoms/Button.astro'
 	@media (max-width: 1440px) {
 		.why {
 			width: 100%;
+			.text {
+				h2 {
+					font-size: fonts.$title-mobile;
+					line-height: fonts.$title-mobile;
+				}
+				.quotes {
+					gap: gutters.$extra-large;
+					.quote {
+						width: 100%;
+						&::before {
+							content: url('/icons/quote-start-mobile.svg');
+							width: 2rem;
+							height: 2rem;
+							top: 0;
+							right: 100%;
+							transform: none;
+						}
+						&::after {
+							content: url('/icons/quote-end-mobile.svg');
+							width: 2rem;
+							height: 2rem;
+							top: unset;
+							bottom: 0;
+							left: 100%;
+							transform: none;
+						}
+					}
+				}
+			}
 			img {
 				border-radius: 0;
 			}
 			.text {
 				width: gutters.$mobile-width;
 				margin-top: gutters.$extra-large;
+			}
+			.answer {
+				width: 80%;
+				h2 {
+					font-size: fonts.$title-mobile;
+					line-height: fonts.$title-mobile;
+				}
+			}
+			.actions {
+				flex-direction: column;
+				width: 80%;
+				margin: auto;
 			}
 		}
 	}

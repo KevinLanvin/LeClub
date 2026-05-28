@@ -1,0 +1,147 @@
+<section class='activites-intro'>
+	<div class='content'>
+		<h1>
+			Des <span class='orange'> activités pour progresser</span> avec votre chien,
+			à chaque étape
+		</h1>
+		<p>
+			Que vous ayez un chiot, un chien adulte ou même des difficultés
+			particulières, le club vous accompagne, à votre rythme
+		</p>
+		<ul class='activites'>
+			<li>Ecole du chiot</li>
+			<li>Education canine</li>
+			<li>Rééducation</li>
+			<li>Balades canines</li>
+		</ul>
+	</div>
+	<div class='not-perfect'>
+		<div class='not-perfect-content'>
+			<h2>Vous n'avez pas besoin d'un chien "parfait" pour venir !</h2>
+			<p>
+				Beaucoup de personnes arrivent avec des doutes ou des difficultés. C'est
+				normal. Le club est là pour vous aider à y voir plus clair et progresser
+			</p>
+		</div>
+		<img
+			src='/images/not-perfect.jpg'
+			alt='Un chien pas parfait du tout'
+			class='illustration'
+		/>
+	</div>
+	<img
+		src='/images/activites-illustration1.jpg'
+		alt=''
+		class='activites-illustration illustration1'
+	/>
+	<img
+		src='/images/activites-illustration2.jpg'
+		alt=''
+		class='activites-illustration illustration2'
+	/>
+	<img
+		src='/images/activites-illustration3.jpg'
+		alt=''
+		class='activites-illustration illustration3'
+	/>
+</section>
+
+<style lang='scss' scoped>
+	@use '../styles/colors';
+	@use '../styles/fonts';
+	@use '../styles/gutters';
+	@use '../styles/borders';
+	@use '../styles/shadows';
+
+	.activites-intro {
+		padding-block: 15rem;
+		background-color: colors.$main-light;
+		position: relative;
+		margin-bottom: 15rem;
+		.content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			gap: gutters.$large;
+			width: 40rem;
+			text-align: center;
+			margin: auto;
+			h1 {
+				color: colors.$main;
+				font-family: fonts.$family-title;
+				font-weight: 400;
+				font-size: fonts.$title;
+				line-height: fonts.$title;
+				width: 80%;
+				.orange {
+					color: colors.$accent;
+				}
+			}
+			.activites {
+				display: flex;
+				flex-direction: row;
+				justify-content: space-between;
+				align-items: center;
+				width: 120%;
+				list-style: none;
+				gap: gutters.$normal;
+				li {
+					display: flex;
+					align-items: center;
+					gap: gutters.$small;
+					width: max-content;
+					font-weight: bold;
+					&::before {
+						content: url('../icons/check-orange.svg');
+						display: block;
+						height: 2rem;
+					}
+				}
+			}
+		}
+		.not-perfect {
+			position: absolute;
+			background-color: colors.$white;
+			padding-left: gutters.$extra-extra-large;
+			padding-block: gutters.$normal;
+			width: gutters.$small-max-width;
+			border-radius: borders.$radius;
+			box-shadow: shadows.$card;
+			bottom: 0;
+			left: 50%;
+			transform: translate(-50%, 60%);
+			display: flex;
+			gap: gutters.$extra-extra-large;
+			align-items: center;
+			overflow: hidden;
+			.not-perfect-content {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				text-align: center;
+				gap: gutters.$extra-large;
+				h2 {
+					color: colors.$main;
+					font-family: fonts.$family-title;
+					font-weight: 400;
+					font-size: fonts.$subtitle;
+					line-height: fonts.$subtitle;
+				}
+			}
+		}
+		.activites-illustration {
+			position: absolute;
+			z-index: 1;
+			border-radius: borders.$radius;
+			&.illustration1 {
+				width: 10rem;
+			}
+			&.illustration2 {
+				width: 10rem;
+			}
+			&.illustration3 {
+				width: 10rem;
+			}
+		}
+	}
+</style>
