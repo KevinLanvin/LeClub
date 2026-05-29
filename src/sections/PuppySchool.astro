@@ -1,0 +1,134 @@
+<section class='puppySchool'>
+	<div class='content'>
+		<h2>
+			Ecole du <span class='orange'>chiot</span> : bien démarrer dès le début
+		</h2>
+		<p>
+			Les premières semaines sont essentielles pour votre chiot. L'objectif ici
+			est de lui faire découvrir le monde, les autres chiens et les bases en
+			douceur.
+		</p>
+		<div class='list'>
+			<h3>Ce que vous allez y faire</h3>
+			<ul>
+				<li>Découvrir de nouvelles situations</li>
+				<li>Apprendre les premiers repères</li>
+				<li>Favoriser une bonne socialisation</li>
+				<li>Prendre les bons réflexes et éviter les pièges</li>
+			</ul>
+		</div>
+		<div class='disclaimer'>
+			<img src='/icons/heart-orange.svg' alt='Coeur' />
+			<p>
+				Les chiots sont regroupés par âge.<br />Ils évoluent dans un
+				environnement sécurisé<br />Les interactions sont encadrées par les
+				moniteurs pour que tous les chiots évoluent en sécurité
+			</p>
+		</div>
+		<img
+			src='/images/puppy-school.jpg'
+			alt=''
+			class='puppy-school-illustration'
+		/>
+	</div>
+</section>
+
+<style lang='scss' scoped>
+	@use '../styles/colors';
+	@use '../styles/fonts';
+	@use '../styles/gutters';
+	@use '../styles/borders';
+	@use '../styles/shadows';
+
+	.puppySchool {
+		.content {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: 40rem;
+			margin: auto;
+			text-align: center;
+			gap: gutters.$extra-large;
+			h2 {
+				color: colors.$main;
+				font-family: fonts.$family-title;
+				font-weight: 400;
+				font-size: fonts.$title;
+				line-height: fonts.$title;
+				width: 80%;
+				.orange {
+					color: colors.$accent;
+				}
+			}
+			.list {
+				align-self: start;
+				display: flex;
+				flex-direction: column;
+				gap: gutters.$large;
+				h3 {
+					text-align: start;
+				}
+				ul {
+					list-style: none;
+					display: flex;
+					flex-direction: column;
+					gap: gutters.$large;
+					li {
+						display: flex;
+						align-items: center;
+						gap: gutters.$small;
+						width: max-content;
+						&::before {
+							content: url('../icons/check-orange.svg');
+							display: block;
+							height: 2rem;
+						}
+					}
+				}
+			}
+			.disclaimer {
+				border: borders.$button;
+				color: colors.$accent-lighter;
+				padding: gutters.$large;
+				border-radius: borders.$radius;
+			}
+			.puppy-school-illustration {
+				width: 60rem;
+				aspect-ratio: 2.5;
+				object-fit: cover;
+				object-view-box: inset(10%);
+				border-radius: borders.$radius;
+			}
+		}
+	}
+	@media (max-width: 1440px) {
+		.puppySchool {
+			padding-top: 15rem;
+			.content {
+				width: gutters.$mobile-width;
+				h2 {
+					font-size: fonts.$title-mobile;
+					line-height: fonts.$title-mobile;
+				}
+				.list {
+					h3 {
+						font-size: fonts.$subtitle;
+						line-height: fonts.$subtitle;
+					}
+					ul {
+						li {
+							width: 100%;
+							word-wrap: normal;
+						}
+					}
+				}
+				.disclaimer {
+					padding: gutters.$normal;
+				}
+				.puppy-school-illustration {
+					width: 100%;
+				}
+			}
+		}
+	}
+</style>

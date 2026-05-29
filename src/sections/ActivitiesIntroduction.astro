@@ -133,14 +133,71 @@
 			position: absolute;
 			z-index: 1;
 			border-radius: borders.$radius;
+			object-fit: cover;
 			&.illustration1 {
-				width: 10rem;
+				width: 19rem;
+				height: 14rem;
+				top: 7rem;
+				left: 50%;
+				transform: translateX(-40rem);
 			}
 			&.illustration2 {
-				width: 10rem;
+				width: 14rem;
+				height: 14rem;
+				top: 18rem;
+				left: 50%;
+				transform: translateX(-43rem);
 			}
 			&.illustration3 {
-				width: 10rem;
+				width: 16rem;
+				height: 19rem;
+				object-position: left;
+				top: 8rem;
+				left: 50%;
+				transform: translateX(25rem);
+			}
+		}
+	}
+
+	@media (max-width: 1440px) {
+		.activites-intro {
+			width: 100%;
+			padding-block: gutters.$extra-large;
+			margin-bottom: -10rem;
+			display: flex;
+			flex-direction: column;
+			gap: gutters.$extra-large;
+			.content {
+				width: gutters.$mobile-width;
+				gap: gutters.$extra-large;
+				h1 {
+					font-size: fonts.$title-mobile;
+					line-height: fonts.$title-mobile;
+					width: 100%;
+					.orange {
+						color: colors.$accent;
+					}
+				}
+				.activites {
+					flex-direction: column;
+					align-items: start;
+					width: 100%;
+					padding-left: gutters.$large;
+				}
+			}
+			.not-perfect {
+				position: relative;
+				bottom: unset;
+				left: unset;
+				transform: unset;
+				margin: auto;
+				width: gutters.$mobile-width;
+				flex-direction: column;
+				padding-left: unset;
+				padding: gutters.$large;
+			}
+			.activites-illustration {
+				display: none;
 			}
 		}
 	}
