@@ -1,35 +1,28 @@
-<section class='puppySchool'>
+---
+import NoJudgement from '../components/NoJudgement.astro'
+---
+
+<section class='education'>
 	<div class='content'>
 		<h2>
-			Ecole du <span class='orange'>chiot</span> : bien démarrer dès le début
+			<span class='orange'>Education canine</span> : améliorer le quotidien
 		</h2>
 		<p>
-			Les premières semaines sont essentielles pour votre chiot. L'objectif ici
-			est de lui faire découvrir le monde, les autres chiens et les bases en
-			douceur.
+			Pour apprendre les bases utiles tous les jours : rappel, marche en laisse
+			et renforcer le lien avec son chien
 		</p>
 		<div class='list'>
-			<h3>Ce que vous allez y faire</h3>
+			<h3>Ce que vous allez travailler</h3>
 			<ul>
-				<li>Découvrir de nouvelles situations</li>
-				<li>Apprendre les premiers repères</li>
-				<li>Favoriser une bonne socialisation</li>
-				<li>Prendre les bons réflexes et éviter les pièges</li>
+				<li>La communication maître-chien</li>
+				<li>L'attention du chien</li>
+				<li>Les situations du quotidien</li>
+				<li>Des jeux inutiles donc indispensables</li>
 			</ul>
 		</div>
-		<div class='disclaimer'>
-			<img src='/icons/heart-orange.svg' alt='Coeur' />
-			<p>
-				Les chiots sont regroupés par âge.<br />Ils évoluent dans un
-				environnement sécurisé<br />Les interactions sont encadrées par les
-				moniteurs pour que tous les chiots évoluent en sécurité
-			</p>
+		<div class='no-judgement'>
+			<NoJudgement class:list='no-judgement-card' />
 		</div>
-		<img
-			src='/images/puppy-school.jpg'
-			alt=''
-			class='puppy-school-illustration'
-		/>
 	</div>
 </section>
 
@@ -40,7 +33,11 @@
 	@use '../styles/borders';
 	@use '../styles/shadows';
 
-	.puppySchool {
+	.education {
+		padding-top: 10rem;
+		margin-top: -5rem;
+		margin-bottom: -5rem;
+		background: colors.$blue-lighter;
 		.content {
 			display: flex;
 			flex-direction: column;
@@ -86,24 +83,29 @@
 					}
 				}
 			}
-			.disclaimer {
-				border: borders.$button;
-				color: colors.$accent-lighter;
-				padding: gutters.$large;
+			.no-judgement {
+				padding: gutters.$extra-extra-large;
+				background-image: url('/images/education-school.png');
+				background-size: cover;
+				background-position: center;
 				border-radius: borders.$radius;
-			}
-			.puppy-school-illustration {
-				width: 60rem;
-				aspect-ratio: 2.5;
-				object-fit: cover;
-				object-view-box: inset(10%);
-				border-radius: borders.$radius;
+				width: gutters.$max-width;
+				margin-top: 5rem;
+				display: flex;
+				justify-content: end;
+				:global(.no-judgement-card) {
+					width: 40rem;
+				}
+				margin-bottom: -15rem;
 			}
 		}
 	}
+
 	@media (max-width: 1440px) {
-		.puppySchool {
-			padding-top: 15rem;
+		.education {
+			padding-top: 8rem;
+			margin-top: -3rem;
+			margin-bottom: -3rem;
 			.content {
 				width: gutters.$mobile-width;
 				h2 {
@@ -122,11 +124,11 @@
 						}
 					}
 				}
-				.disclaimer {
-					padding: gutters.$normal;
-				}
-				.puppy-school-illustration {
-					width: 100%;
+				.no-judgement {
+					.education-school-illustration {
+						width: 100%;
+						margin-top: gutters.$large;
+					}
 				}
 			}
 		}

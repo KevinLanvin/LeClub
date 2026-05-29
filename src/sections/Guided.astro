@@ -1,0 +1,29 @@
+---
+import LetMeGuideYou from '../components/LetMeGuideYou.astro'
+---
+
+<section class='guided'>
+	<div class='content'>
+		<LetMeGuideYou class='guided-card' />
+	</div>
+</section>
+
+<style scoped lang='scss'>
+	@use '../styles/gutters';
+
+	.guided {
+		display: flex;
+		padding: 5rem;
+		width: 100%;
+		background-image: url('/images/why.jpg');
+		background-size: cover;
+		background-position: center 30%;
+		.content {
+			width: gutters.$small-max-width;
+			margin: auto;
+			:global(.guided-card) {
+				width: 35rem;
+			}
+		}
+	}
+</style>

@@ -1,0 +1,59 @@
+---
+import Button from './atoms/Button.astro'
+
+const { class: className } = Astro.props
+---
+
+<div class:list={['action-card', className]}>
+	<div class='titles'>
+		<h4>Vous ne savez pas par où commencer ?</h4>
+		<h4 class='orange'>Laissez-vous guider !</h4>
+	</div>
+	<div class='texts'>
+		<p>Le plus simple, c'est de venir nous rencontrer.</p>
+		<p>Nous vous orienterons en fonction de votre chien.</p>
+	</div>
+	<div class='actions'>
+		<Button>Nous contacter</Button>
+		<Button inverted>Voir le planning</Button>
+	</div>
+</div>
+
+<style scoped lang='scss'>
+	@use '../styles/colors';
+	@use '../styles/gutters';
+	@use '../styles/borders';
+	@use '../styles/fonts';
+
+	.action-card {
+		background-color: colors.$white;
+		padding: gutters.$extra-large;
+		border-radius: borders.$radius;
+		display: flex;
+		flex-direction: column;
+		gap: gutters.$extra-extra-large;
+		align-items: center;
+		text-align: center;
+		.titles {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			font-family: fonts.$family-title;
+			font-size: fonts.$title-mobile;
+			line-height: fonts.$title-mobile;
+			gap: gutters.$small;
+			h4 {
+				font-weight: 400;
+			}
+			.orange {
+				color: colors.$accent;
+			}
+		}
+		.actions {
+			width: 100%;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: gutters.$large;
+		}
+	}
+</style>

@@ -1,36 +1,27 @@
-<section class='puppySchool'>
+---
+import Surprise from '../icons/surprise.astro'
+---
+
+<section class='walks'>
+	<img src='/images/walks.jpg' alt='' class='walks-illustration' />
 	<div class='content'>
 		<h2>
-			Ecole du <span class='orange'>chiot</span> : bien démarrer dès le début
+			<span class='orange'>Balades canines</span> : apprendre en situation réelle
 		</h2>
 		<p>
-			Les premières semaines sont essentielles pour votre chiot. L'objectif ici
-			est de lui faire découvrir le monde, les autres chiens et les bases en
-			douceur.
+			Pour apprendre les bases utiles tous les jours : rappel, marche en laisse.
+			Des balades encadrées pour travailler dans un cadre plus naturel.
 		</p>
 		<div class='list'>
-			<h3>Ce que vous allez y faire</h3>
+			<h3>Ce que vous allez travailler</h3>
 			<ul>
-				<li>Découvrir de nouvelles situations</li>
-				<li>Apprendre les premiers repères</li>
-				<li>Favoriser une bonne socialisation</li>
-				<li>Prendre les bons réflexes et éviter les pièges</li>
+				<li>La marche en laisse</li>
+				<li>Le comportement en extérieur</li>
+				<li>La gestions des interactions</li>
 			</ul>
 		</div>
-		<div class='disclaimer'>
-			<img src='/icons/heart-orange.svg' alt='Coeur' />
-			<p>
-				Les chiots sont regroupés par âge.<br />Ils évoluent dans un
-				environnement sécurisé<br />Les interactions sont encadrées par les
-				moniteurs pour que tous les chiots évoluent en sécurité
-			</p>
-		</div>
-		<img
-			src='/images/puppy-school.jpg'
-			alt=''
-			class='puppy-school-illustration'
-		/>
 	</div>
+	<Surprise class='surprise' />
 </section>
 
 <style lang='scss' scoped>
@@ -40,7 +31,15 @@
 	@use '../styles/borders';
 	@use '../styles/shadows';
 
-	.puppySchool {
+	.walks {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: gutters.$extra-extra-large;
+		padding-top: 5rem;
+		padding-bottom: 10rem;
+		background-color: colors.$main-lighter;
+		position: relative;
 		.content {
 			display: flex;
 			flex-direction: column;
@@ -86,24 +85,23 @@
 					}
 				}
 			}
-			.disclaimer {
-				border: borders.$button;
-				color: colors.$accent-lighter;
-				padding: gutters.$large;
-				border-radius: borders.$radius;
-			}
-			.puppy-school-illustration {
-				width: 60rem;
-				aspect-ratio: 2.5;
-				object-fit: cover;
-				object-view-box: inset(10%);
-				border-radius: borders.$radius;
-			}
+		}
+		.walks-illustration {
+			width: 60rem;
+			aspect-ratio: 2.5;
+			object-fit: cover;
+			object-view-box: inset(10%);
+			border-radius: borders.$radius;
+		}
+		:global(.surprise) {
+			position: absolute;
+			bottom: 5rem;
+			right: 15rem;
+			transform: rotate(50deg);
 		}
 	}
 	@media (max-width: 1440px) {
-		.puppySchool {
-			padding-top: 15rem;
+		.walks {
 			.content {
 				width: gutters.$mobile-width;
 				h2 {
@@ -122,12 +120,16 @@
 						}
 					}
 				}
-				.disclaimer {
-					padding: gutters.$normal;
-				}
-				.puppy-school-illustration {
-					width: 100%;
-				}
+			}
+			.walks-illustration {
+				width: gutters.$mobile-width;
+			}
+			:global(.surprise) {
+				position: absolute;
+				width: 3rem;
+				bottom: 3rem;
+				right: 5rem;
+				transform: rotate(50deg);
 			}
 		}
 	}

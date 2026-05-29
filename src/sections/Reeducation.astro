@@ -1,36 +1,33 @@
-<section class='puppySchool'>
+<section class='reeducation'>
 	<div class='content'>
 		<h2>
-			Ecole du <span class='orange'>chiot</span> : bien démarrer dès le début
+			<span class='orange'>Rééducation</span> : quand il y a des difficultés spécifiques
 		</h2>
 		<p>
-			Les premières semaines sont essentielles pour votre chiot. L'objectif ici
-			est de lui faire découvrir le monde, les autres chiens et les bases en
-			douceur.
+			Certains chiens ont besoin d'un accompagnement personnalisé : peur,
+			réactivité, difficultés avec les autres chiens ...
 		</p>
 		<div class='list'>
 			<h3>Ce que vous allez y faire</h3>
 			<ul>
-				<li>Découvrir de nouvelles situations</li>
-				<li>Apprendre les premiers repères</li>
-				<li>Favoriser une bonne socialisation</li>
-				<li>Prendre les bons réflexes et éviter les pièges</li>
+				<li>Comprendre les réactions de votre chien</li>
+				<li>Adapter votre comportement</li>
+				<li>Progresser étape par étape</li>
 			</ul>
 		</div>
 		<div class='disclaimer'>
 			<img src='/icons/heart-orange.svg' alt='Coeur' />
 			<p>
-				Les chiots sont regroupés par âge.<br />Ils évoluent dans un
-				environnement sécurisé<br />Les interactions sont encadrées par les
-				moniteurs pour que tous les chiots évoluent en sécurité
+				Les situations sont adaptées pour éviter de mettre le chien en
+				difficulté.<br />On avance progressivement, sans le brusquer.
 			</p>
 		</div>
-		<img
-			src='/images/puppy-school.jpg'
-			alt=''
-			class='puppy-school-illustration'
-		/>
 	</div>
+	<img
+		src='/images/reeducation.png'
+		alt=''
+		class='reeducation-school-illustration'
+	/>
 </section>
 
 <style lang='scss' scoped>
@@ -40,7 +37,14 @@
 	@use '../styles/borders';
 	@use '../styles/shadows';
 
-	.puppySchool {
+	.reeducation {
+		padding-top: 25rem;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		width: gutters.$small-max-width;
+		margin: auto;
+		margin-bottom: 5rem;
+		gap: gutters.$extra-extra-large;
 		.content {
 			display: flex;
 			flex-direction: column;
@@ -91,21 +95,24 @@
 				color: colors.$accent-lighter;
 				padding: gutters.$large;
 				border-radius: borders.$radius;
+				width: 100%;
 			}
-			.puppy-school-illustration {
-				width: 60rem;
-				aspect-ratio: 2.5;
-				object-fit: cover;
-				object-view-box: inset(10%);
-				border-radius: borders.$radius;
-			}
+		}
+		.reeducation-school-illustration {
+			display: block;
+			width: 100%;
+			object-fit: cover;
+			object-view-box: inset(16%);
+			border-radius: borders.$radius;
 		}
 	}
 	@media (max-width: 1440px) {
-		.puppySchool {
-			padding-top: 15rem;
+		.reeducation {
+			padding-top: 25rem;
+			grid-template-columns: 1fr;
+			width: gutters.$mobile-width;
 			.content {
-				width: gutters.$mobile-width;
+				width: 100%;
 				h2 {
 					font-size: fonts.$title-mobile;
 					line-height: fonts.$title-mobile;
@@ -125,9 +132,9 @@
 				.disclaimer {
 					padding: gutters.$normal;
 				}
-				.puppy-school-illustration {
-					width: 100%;
-				}
+			}
+			.reeducation-school-illustration {
+				width: 100%;
 			}
 		}
 	}
