@@ -1,0 +1,259 @@
+---
+import Button from '../components/atoms/Button.astro'
+
+const photos = [
+	{
+		src: '/images/le-club-au-poil-2.jpg',
+		alt: 'Bénévole avec son chien dans une brouette',
+		left: 2,
+		top: 7,
+		width: 22,
+		height: 41,
+		rotate: -6,
+		z: 3,
+		position: 'center 30%',
+	},
+	{
+		src: '/images/le-club-au-poil-5.jpg',
+		alt: 'Bénévole avec un chien noir et blanc dans une brouette',
+		left: 5,
+		top: 34,
+		width: 23,
+		height: 48,
+		rotate: -11,
+		z: 4,
+		position: 'center',
+	},
+	{
+		src: '/images/le-club-au-poil-6.jpg',
+		alt: 'Chien tricolore dans l’herbe',
+		left: -2,
+		top: 68,
+		width: 16,
+		height: 40,
+		rotate: -4,
+		z: 2,
+		position: 'center',
+	},
+	{
+		src: '/images/le-club-au-poil-3.jpg',
+		alt: 'Bénévole en pleine séance',
+		left: 27,
+		top: 7,
+		width: 25,
+		height: 32,
+		rotate: -2,
+		z: 2,
+		position: 'center 15%',
+		scale: 1.8,
+	},
+	{
+		src: '/images/le-club-au-poil-4.jpg',
+		alt: 'Bénévole prenant son chien dans les bras',
+		left: 50,
+		top: 9,
+		width: 21,
+		height: 30,
+		rotate: 4,
+		z: 2,
+		position: 'center 20%',
+	},
+	{
+		src: '/images/le-club-au-poil-1.jpg',
+		alt: 'Chien et bénévoles dans une remorque',
+		left: 77,
+		top: 7,
+		width: 25,
+		height: 35,
+		rotate: 5,
+		z: 3,
+		position: '60% 55%',
+		scale: 1.4,
+	},
+	{
+		src: '/images/le-club-au-poil-9.jpg',
+		alt: 'Chien de face au milieu des fleurs',
+		left: 68,
+		top: 41,
+		width: 17,
+		height: 29,
+		rotate: -5,
+		z: 2,
+		position: 'center 25%',
+	},
+	{
+		src: '/images/le-club-au-poil-10.jpg',
+		alt: 'Bénévole souriant',
+		left: 81,
+		top: 37,
+		width: 20,
+		height: 48,
+		rotate: 3,
+		z: 3,
+		position: '45% 40%',
+		scale: 2.4,
+	},
+	{
+		src: '/images/le-club-au-poil-7.jpg',
+		alt: 'Bénévole prenant son chien dans les bras',
+		left: 27,
+		top: 71,
+		width: 25,
+		height: 35,
+		rotate: -4,
+		z: 2,
+		position: 'center 20%',
+	},
+	{
+		src: '/images/le-club-au-poil-8.jpg',
+		alt: 'Bénévoles souriants devant le chalet',
+		left: 49,
+		top: 70,
+		width: 25,
+		height: 35,
+		rotate: 2,
+		z: 2,
+		position: '75% 35%',
+		scale: 1.6,
+	},
+	{
+		src: '/images/le-club-au-poil-11.jpg',
+		alt: 'Chien et bénévoles dans une remorque',
+		left: 73,
+		top: 78,
+		width: 19,
+		height: 35,
+		rotate: 6,
+		z: 1,
+		position: '70% 40%',
+		scale: 1.6,
+	},
+]
+---
+
+<section class='team-collage'>
+	<div class='photos'>
+		{
+			photos.map((photo) => (
+				<div
+					class='photo'
+					style={`left:${photo.left}%; top:${photo.top}%; width:${photo.width}%; height:${photo.height}%; transform: rotate(${photo.rotate}deg); z-index:${photo.z};`}
+				>
+					<img
+						src={photo.src}
+						alt={photo.alt}
+						style={`object-position:${photo.position}; transform: scale(${photo.scale ?? 1});`}
+					/>
+				</div>
+			))
+		}
+	</div>
+	<div class='card'>
+		<h2>Une <span class='orange'>équipe</span> au poil !</h2>
+		<p>
+			Le club de Téteghem, c’est une association qui fonctionne grâce à des
+			bénévoles passionnés.<br />
+			Chacun donne un peu de son temps pour accompagner les autres, partager
+			son expérience… et continuer à apprendre.
+		</p>
+		<Button>Consulter le planning</Button>
+	</div>
+</section>
+
+<style lang='scss' scoped>
+	@use '../styles/colors';
+	@use '../styles/fonts';
+	@use '../styles/gutters';
+	@use '../styles/borders';
+	@use '../styles/shadows';
+
+	.team-collage {
+		position: relative;
+		width: 100%;
+		height: 58rem;
+		padding-bottom: 6rem;
+		background-color: colors.$white;
+		overflow: hidden;
+		.photos {
+			position: absolute;
+			inset: 0;
+			.photo {
+				position: absolute;
+				padding: 3px;
+				background-color: colors.$white;
+				border-radius: 12px;
+				box-shadow: shadows.$card;
+				overflow: hidden;
+				img {
+					display: block;
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					border-radius: 9px;
+				}
+			}
+		}
+		.card {
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+			z-index: 10;
+			width: 35rem;
+			background-color: colors.$white;
+			border-radius: borders.$radius;
+			box-shadow: shadows.$card;
+			padding: gutters.$extra-large;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			gap: gutters.$large;
+			h2 {
+				font-family: fonts.$family-title;
+				font-weight: 400;
+				font-size: fonts.$title;
+				line-height: fonts.$title;
+				.orange {
+					color: colors.$accent;
+				}
+			}
+		}
+	}
+
+	@media (max-width: 1440px) {
+		.team-collage {
+			height: auto;
+			display: flex;
+			flex-direction: column;
+			gap: gutters.$normal;
+			padding: gutters.$normal;
+			.photos {
+				position: relative;
+				inset: unset;
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: gutters.$small;
+				.photo {
+					position: relative;
+					left: unset;
+					top: unset;
+					width: 100%;
+					height: 6rem;
+					transform: none;
+				}
+			}
+			.card {
+				position: relative;
+				left: unset;
+				top: unset;
+				transform: none;
+				width: 100%;
+				h2 {
+					font-size: fonts.$title-mobile;
+					line-height: fonts.$title-mobile;
+				}
+			}
+		}
+	}
+</style>

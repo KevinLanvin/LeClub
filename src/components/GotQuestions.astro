@@ -1,0 +1,54 @@
+---
+import Button from './atoms/Button.astro'
+
+const { class: className } = Astro.props
+---
+
+<div class:list={['action-card', className]}>
+	<h4>Une question avant de venir ?</h4>
+	<p>
+		Vous pouvez également nous écrire via notre formulaire de contact.
+	</p>
+	<div class='actions'>
+		<Button>Nous contacter par mail</Button>
+		<Button inverted>En savoir plus sur le Club</Button>
+	</div>
+</div>
+
+<style scoped lang='scss'>
+	@use '../styles/colors';
+	@use '../styles/gutters';
+	@use '../styles/borders';
+	@use '../styles/fonts';
+
+	.action-card {
+		background-color: colors.$white;
+		padding: gutters.$extra-large;
+		border-radius: borders.$radius;
+		display: flex;
+		flex-direction: column;
+		gap: gutters.$extra-large;
+		align-items: center;
+		text-align: center;
+		h4 {
+			font-family: fonts.$family-title;
+			font-weight: 400;
+			font-size: fonts.$title-mobile;
+			line-height: fonts.$title-mobile;
+		}
+		.actions {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			gap: gutters.$large;
+		}
+	}
+
+	@media (max-width: 1440px) {
+		.action-card {
+			.actions {
+				flex-direction: column;
+			}
+		}
+	}
+</style>

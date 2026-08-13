@@ -1,0 +1,44 @@
+---
+import GotQuestions from '../components/GotQuestions.astro'
+
+const { backgroundImage = '/images/sunny-brouette.png' } = Astro.props
+---
+
+<section class='contact-cta' style={`background-image: url('${backgroundImage}')`}>
+	<div class='content'>
+		<GotQuestions class='contact-cta-card' />
+	</div>
+</section>
+
+<style scoped lang='scss'>
+	@use '../styles/gutters';
+
+	.contact-cta {
+		display: flex;
+		padding: 5rem;
+		width: 100%;
+		background-size: cover;
+		background-position: center;
+		.content {
+			width: gutters.$small-max-width;
+			margin: auto;
+			display: flex;
+			justify-content: end;
+			:global(.contact-cta-card) {
+				width: 35rem;
+			}
+		}
+	}
+
+	@media (max-width: 1440px) {
+		.contact-cta {
+			padding: gutters.$normal;
+			.content {
+				width: 100%;
+				:global(.contact-cta-card) {
+					width: 100%;
+				}
+			}
+		}
+	}
+</style>

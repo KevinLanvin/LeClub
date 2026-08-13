@@ -1,0 +1,112 @@
+---
+import Button from '../components/atoms/Button.astro'
+---
+
+<section class='le-club-intro'>
+	<div class='content'>
+		<div class='illustration'>
+			<img src='/images/le-club-intro.jpg' alt='Moment convivial au club' />
+		</div>
+		<div class='main'>
+			<h3>Un club canin & humain</h3>
+			<h1>
+				<span class='orange'>Des bénévoles</span>, des chiens, et beaucoup de
+				moments partagés.
+			</h1>
+			<p>
+				Ici, on ne vient pas seulement pour ‘dresser’ son chien. On vient
+				apprendre, comprendre… et faire partie d’un collectif.
+			</p>
+			<div class='actions'>
+				<Button>Découvrir les activités</Button>
+				<Button inverted>Inscrivez-vous</Button>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style lang='scss' scoped>
+	@use '../styles/colors';
+	@use '../styles/gutters';
+	@use '../styles/borders';
+	@use '../styles/fonts';
+
+	.le-club-intro {
+		width: 100%;
+		color: colors.$text;
+		.content {
+			max-width: gutters.$small-max-width;
+			margin: auto;
+			padding-block: gutters.$extra-extra-large;
+			display: flex;
+			align-items: center;
+			gap: gutters.$extra-extra-large;
+		}
+		.illustration {
+			width: 45%;
+			flex-shrink: 0;
+			img {
+				display: block;
+				width: 100%;
+				height: 32rem;
+				object-fit: cover;
+				border-radius: borders.$radius;
+			}
+		}
+		.main {
+			flex: 1;
+			display: flex;
+			flex-direction: column;
+			gap: gutters.$normal;
+			h3 {
+				text-transform: uppercase;
+				font-size: 1rem;
+				font-weight: 300;
+				letter-spacing: 0;
+				font-family: Poppins;
+			}
+			h1 {
+				color: colors.$main;
+				font-family: fonts.$family-title;
+				font-weight: 400;
+				font-size: fonts.$title;
+				line-height: fonts.$title;
+				.orange {
+					color: colors.$accent;
+				}
+			}
+		}
+		.actions {
+			display: flex;
+			gap: gutters.$normal;
+		}
+	}
+
+	@media (max-width: 1440px) {
+		.le-club-intro {
+			padding-inline: gutters.$normal;
+			.content {
+				max-width: 100%;
+				padding-block: gutters.$extra-large;
+				flex-direction: column;
+				align-items: stretch;
+			}
+			.illustration {
+				width: 100%;
+				img {
+					height: auto;
+					aspect-ratio: 1.2;
+				}
+			}
+			.main {
+				h1 {
+					font-size: fonts.$title-mobile;
+					line-height: fonts.$title-mobile;
+				}
+				.actions {
+					flex-direction: column;
+				}
+			}
+		}
+	}
+</style>

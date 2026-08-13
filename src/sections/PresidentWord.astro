@@ -1,0 +1,90 @@
+---
+import Heart from '../icons/heart.astro'
+---
+
+<section class='president-word'>
+	<div class='content'>
+		<h2>Le mot de la <span class='orange'>présidente</span></h2>
+		<p class='quote'>
+			“Vous allez vous aimer les uns les autres, bordel de merde ?”<br />
+			Et franchement… Voilà !
+		</p>
+		<p class='signature'>
+			Valérie,<br />
+			Présidente du Club de Téteghem bien avant Michel Drucker
+		</p>
+	</div>
+	<div class='illustration'>
+		<Heart class='heart' />
+		<img src='/images/le-club-presidente.jpg' alt='Valérie, présidente du club' />
+	</div>
+</section>
+
+<style lang='scss' scoped>
+	@use '../styles/colors';
+	@use '../styles/fonts';
+	@use '../styles/gutters';
+	@use '../styles/borders';
+
+	.president-word {
+		width: gutters.$small-max-width;
+		margin: auto;
+		padding-block: gutters.$extra-extra-large;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: gutters.$extra-extra-large;
+		align-items: center;
+		.content {
+			display: flex;
+			flex-direction: column;
+			gap: gutters.$large;
+			h2 {
+				color: colors.$main;
+				font-family: fonts.$family-title;
+				font-weight: 400;
+				font-size: fonts.$title;
+				line-height: fonts.$title;
+				.orange {
+					color: colors.$accent;
+				}
+			}
+			.signature {
+				font-weight: bold;
+			}
+		}
+		.illustration {
+			position: relative;
+			:global(.heart) {
+				position: absolute;
+				top: 0;
+				right: 5rem;
+				width: 7.5rem;
+				height: 6.9rem;
+				transform: translateY(-50%);
+			}
+			img {
+				display: block;
+				width: 100%;
+				aspect-ratio: 1.18;
+				object-fit: cover;
+				border-radius: borders.$radius;
+			}
+		}
+	}
+
+	@media (max-width: 1440px) {
+		.president-word {
+			width: gutters.$mobile-width;
+			grid-template-columns: 1fr;
+			padding-block: gutters.$extra-large;
+			.illustration {
+				order: -1;
+				:global(.heart) {
+					width: 4.25rem;
+					height: 3.9rem;
+					right: 2.5rem;
+				}
+			}
+		}
+	}
+</style>

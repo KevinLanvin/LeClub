@@ -1,0 +1,188 @@
+---
+import Star from '../icons/star.astro'
+import Location from '../icons/location.astro'
+import Button from '../components/atoms/Button.astro'
+---
+
+<section class='inscription-intro'>
+	<div class='content'>
+		<div class='main'>
+			<h3>Rencontrer le club d’éducation canine de Téteghem</h3>
+			<h1>
+				<span class='orange'>Venez</span>, on ne mord pas !
+			</h1>
+			<p>
+				Pas besoin de tout savoir avant de venir. On est là pour échanger, vous
+				orienter… et rencontrer votre chien.
+			</p>
+			<div class='actions'>
+				<Button>Découvrir les activités</Button>
+				<Button inverted>Consulter le planning</Button>
+			</div>
+		</div>
+		<div class='illustration'>
+			<img src='/images/storm.png' alt='Chien' />
+		</div>
+		<div class='informations'>
+			<div class='information'>
+				<span class='icon'><Star /></span>
+				<span class='title'>Sans rendez-vous !</span>
+				<span class='details'>
+					Vous pouvez venir directement sur place pendant les horaires de cours.
+				</span>
+			</div>
+			<div class='information'>
+				<span class='icon'><Location /></span>
+				<span class='title'>Le Samedi ou Mercredi à Téteghem</span>
+				<span class='details'>(près de Dunkerque)</span>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style lang='scss' scoped>
+	@use '../styles/colors';
+	@use '../styles/gutters';
+	@use '../styles/borders';
+	@use '../styles/shadows';
+	@use '../styles/fonts';
+
+	.inscription-intro {
+		width: 100%;
+		color: colors.$text;
+		margin-bottom: 10rem;
+		background-color: colors.$red;
+		.content {
+			max-width: gutters.$small-max-width;
+			margin: auto;
+			position: relative;
+			padding-top: gutters.$extra-extra-large;
+		}
+		.main {
+			padding: 10rem 0;
+			display: flex;
+			flex-direction: column;
+			gap: gutters.$normal;
+			max-width: 50%;
+			h3 {
+				text-transform: uppercase;
+				font-size: 1rem;
+				font-weight: 300;
+				letter-spacing: 0;
+				font-family: Poppins;
+			}
+			h1 {
+				color: colors.$main;
+				font-family: fonts.$family-title;
+				font-weight: 400;
+				font-size: fonts.$title;
+				line-height: fonts.$title;
+				.orange {
+					color: colors.$accent;
+				}
+			}
+		}
+		.actions {
+			display: flex;
+			gap: gutters.$normal;
+		}
+		.illustration {
+			width: 45%;
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			img {
+				width: 100%;
+				height: 32rem;
+				object-fit: cover;
+				border-radius: borders.$radius;
+			}
+		}
+		.informations {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: gutters.$small;
+			background: colors.$white;
+			padding: gutters.$small;
+			border-radius: borders.$radius;
+			box-shadow: shadows.$card;
+			position: absolute;
+			bottom: 0;
+			transform: translateY(50%);
+			left: 0;
+			width: 100%;
+			.information {
+				padding: gutters.$normal;
+				border-radius: borders.$radius;
+				display: grid;
+				grid-template-areas:
+					'icon title'
+					'icon text';
+				grid-template-columns: 3rem 1fr;
+				column-gap: gutters.$small;
+				&:nth-child(1) {
+					background-color: colors.$white;
+				}
+				&:nth-child(2) {
+					background-color: colors.$main-lighter;
+				}
+				.icon {
+					grid-area: icon;
+					width: 3rem;
+					height: 3rem;
+				}
+				.title {
+					grid-area: title;
+					font-weight: bold;
+				}
+				.details {
+					grid-area: text;
+				}
+			}
+		}
+	}
+
+	@media (max-width: 1440px) {
+		.inscription-intro {
+			margin-bottom: 5rem;
+			padding-inline: gutters.$normal;
+			.content {
+				max-width: 100%;
+			}
+			.main {
+				padding: gutters.$extra-extra-large gutters.$extra-extra-large 0;
+				max-width: 100%;
+				h1 {
+					font-size: fonts.$title-mobile;
+					line-height: fonts.$title-mobile;
+				}
+				.actions {
+					flex-direction: column;
+				}
+			}
+			.illustration {
+				position: relative;
+				right: unset;
+				bottom: unset;
+				width: 100%;
+				margin-top: gutters.$extra-large;
+				img {
+					display: block;
+					height: auto;
+					aspect-ratio: 1.2;
+				}
+			}
+			.informations {
+				position: relative;
+				gap: gutters.$normal;
+				max-width: 100%;
+				left: unset;
+				bottom: unset;
+				transform: unset;
+				grid-template-columns: 1fr;
+				grid-template-rows: repeat(2, 1fr);
+				margin-top: gutters.$extra-large;
+			}
+		}
+	}
+</style>
