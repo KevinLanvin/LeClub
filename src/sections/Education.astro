@@ -1,8 +1,10 @@
 ---
 import NoJudgement from '../components/NoJudgement.astro'
+import LogoOutline from '../components/LogoOutline.astro'
 ---
 
 <section id='education' class='education'>
+	<LogoOutline class='education-logo' />
 	<div class='content'>
 		<h2>
 			<span class='orange'>Education canine</span> : améliorer le quotidien
@@ -38,7 +40,18 @@ import NoJudgement from '../components/NoJudgement.astro'
 		margin-top: -5rem;
 		margin-bottom: -5rem;
 		background: colors.$blue-lighter;
+		position: relative;
+		// the card below overlaps the next section, so only clip sideways
+		overflow-x: clip;
+		> :global(.education-logo) {
+			width: 70rem;
+			top: 18%;
+			left: -35rem;
+			transform: rotate(-25deg);
+		}
 		.content {
+			position: relative;
+			z-index: 1;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -107,6 +120,10 @@ import NoJudgement from '../components/NoJudgement.astro'
 			padding-bottom: gutters.$extra-large;
 			margin-top: -3rem;
 			margin-bottom: -3rem;
+			> :global(.education-logo) {
+				width: 32rem;
+				left: -16rem;
+			}
 			.content {
 				width: gutters.$mobile-width;
 				h2 {

@@ -1,0 +1,21 @@
+---
+// Decorative logo outline (like in the Figma mockups): pale green, behind the content.
+// Position and size are set by the parent through the `class` prop (use :global()).
+const { class: className } = Astro.props
+---
+
+<div class:list={['logo-outline', className]} aria-hidden='true'></div>
+
+<style scoped lang='scss'>
+	@use '../styles/colors';
+
+	.logo-outline {
+		position: absolute;
+		z-index: 0;
+		pointer-events: none;
+		aspect-ratio: calc(884 / 430);
+		background-color: colors.$main;
+		opacity: 0.12;
+		mask: url('/images/logo-no-text.svg') center / contain no-repeat;
+	}
+</style>

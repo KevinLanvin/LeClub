@@ -104,7 +104,6 @@ import Surprise from '../icons/surprise.astro'
 			}
 		}
 		.logo {
-			display: none;
 			position: absolute;
 			top: 0;
 			right: 0;
@@ -113,6 +112,7 @@ import Surprise from '../icons/surprise.astro'
 			aspect-ratio: calc(884 / 430);
 			z-index: -1;
 			background-color: colors.$main;
+			opacity: 0.12;
 			mask: url('/images/logo-no-text.svg');
 			mask-repeat: no-repeat;
 			mask-position: center;
@@ -207,8 +207,11 @@ import Surprise from '../icons/surprise.astro'
 				}
 			}
 			.logo {
-				width: 80%;
-				top: 8rem;
+				// behind the dogs, like on desktop
+				width: 130%;
+				top: 34rem;
+				right: -35%;
+				transform: rotate(-36deg);
 			}
 		}
 	}

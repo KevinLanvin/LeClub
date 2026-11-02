@@ -4,6 +4,7 @@ import HeaderAfter from '../icons/header-after.astro'
 import HeaderBefore from '../icons/header-before.astro'
 import type { coursesValues } from '../content/config'
 import Button from './atoms/Button.astro'
+import LogoOutline from './LogoOutline.astro'
 
 const entries = await getCollection('courses')
 // one block per day with courses, in chronological order
@@ -50,6 +51,8 @@ const monitorAvatars = {
 ---
 
 <section id='planning' class='courses'>
+	<LogoOutline class='courses-logo courses-logo-right' />
+	<LogoOutline class='courses-logo courses-logo-left' />
 	<div class='title'>
 		<HeaderBefore />
 		<h2>Le planning des<br /> prochains cours</h2>
@@ -155,6 +158,27 @@ const monitorAvatars = {
 		align-items: center;
 		gap: gutters.$extra-extra-large;
 		padding-block: 5rem;
+		position: relative;
+		overflow: hidden;
+		> * {
+			position: relative;
+			z-index: 1;
+		}
+		> :global(.courses-logo) {
+			position: absolute;
+			z-index: 0;
+			width: 90rem;
+		}
+		> :global(.courses-logo-right) {
+			top: -10%;
+			right: -55rem;
+			transform: rotate(-30deg);
+		}
+		> :global(.courses-logo-left) {
+			bottom: -20%;
+			left: -60rem;
+			transform: rotate(20deg);
+		}
 		.title {
 			display: flex;
 			gap: gutters.$normal;
@@ -251,6 +275,17 @@ const monitorAvatars = {
 		.courses {
 			width: 100%;
 			padding-inline: 1rem;
+			> :global(.courses-logo) {
+				width: 36rem;
+			}
+			> :global(.courses-logo-right) {
+				top: 12%;
+				right: -22rem;
+			}
+			> :global(.courses-logo-left) {
+				bottom: 6%;
+				left: -20rem;
+			}
 			.title h2 {
 				font-size: fonts.$title-mobile;
 				line-height: fonts.$title-mobile;
