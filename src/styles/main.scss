@@ -25,6 +25,15 @@ body {
   position: relative;
 }
 
+// iOS Safari: a press on a photo starts the native "lift" animation (a zoom in/out) and then the
+// save menu. The photos are decorative, so both are turned off.
+img {
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 ul {
   display: flex;
   flex-direction: column;
