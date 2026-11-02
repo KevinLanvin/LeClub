@@ -76,6 +76,7 @@ const monitorAvatars = {
 							</span>
 						</td>
 						<td class='monitors'>
+							{/* Avatars hidden until we have everyone's photo
 							<div class='avatars'>
 								{course.teachers.map((monitor) => (
 									<img
@@ -84,6 +85,7 @@ const monitorAvatars = {
 									/>
 								))}
 							</div>
+							*/}
 							<span class='names'>
 								{course.teachers.map(capitalize).join(' & ')}
 							</span>
@@ -111,6 +113,7 @@ const monitorAvatars = {
 						{course.courseName}
 					</div>
 					<div class='monitors'>
+						{/* Avatars hidden until we have everyone's photo
 						<div class='avatars'>
 							{course.teachers.map((monitor) => (
 								<img
@@ -119,6 +122,7 @@ const monitorAvatars = {
 								/>
 							))}
 						</div>
+						*/}
 						<span class='names'>
 							{course.teachers.map(capitalize).join(' & ')}
 						</span>
