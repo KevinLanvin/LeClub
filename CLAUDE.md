@@ -17,7 +17,8 @@ Dev commands: `npm run dev` (astro dev), `npm run build`, `npm run preview`.
 
 ## Structure
 
-- `src/pages/*.astro` — one file per route (`index.astro` = `/`, `activites.astro` = `/activites`).
+- `src/pages/*.astro` — one file per route: `index` (`/`), `activites`, `inscription`,
+  `le-club`, `contact`, `merci` (form confirmation page).
   A page is just a `<Layout>` composing `sections/*` in order — pages should stay thin;
   put actual content/markup in a section, not the page.
 - `src/layouts/MainLayout.astro` — wraps every page with `<Header/>` + `<main><slot/></main>` + `<Footer/>`,
@@ -25,11 +26,22 @@ Dev commands: `npm run dev` (astro dev), `npm run build`, `npm run preview`.
 - `src/sections/*.astro` — big page blocks (hero, "why us", activity descriptions, etc.).
   One file per section, named after its content (`Introduction`, `JoinUs`, `Why`,
   `PuppySchool`, `Reeducation`, `Walks`, `Education`, `Guided`, `Activities`,
-  `ActivitiesIntroduction`, `MoreThanClub`). Sections are currently **hardcoded content**,
+  `ActivitiesIntroduction`, `MoreThanClub`, `InscriptionIntro`, `LeClubIntro`,
+  `WhatMakesTheClub`, `TeamCollage`, `PresidentWord`, `ContactCTA`, `Membership`, `ContactForm`,
+  `ThankYou`). Sections are currently **hardcoded content**,
   not prop-driven — reusability across pages happens by importing the same section file
   into multiple pages, not by parameterizing one.
 - `src/components/` — smaller reusable pieces:
-  - `Header.astro`, `Footer.astro` — site chrome (Footer is currently a minimal placeholder bar).
+  - `Header.astro`, `Footer.astro` — site chrome. Header: nav links, "S'inscrire" (`/inscription`)
+    and "Contact" (`/contact`) buttons wrapped in `<a>`, mobile hamburger menu (the header buttons
+    are hidden on mobile, so the menu repeats them as links). Footer: logo, Facebook group,
+    external link, address/hours, copyright (no legal notice page yet).
+  - Anchors used by the nav: `#planning` (`Courses.astro`), `#ecole-du-chiot`, `#education`,
+    `#reeducation`, `#balades` (the matching sections on `/activites`). `main.scss` sets
+    `scroll-padding-top` so the sticky header doesn't hide targets.
+  - `GotQuestions.astro` — "Une question avant de venir ?" card, used by `ContactCTA.astro`.
+  - `PracticalInfo.astro` — "Infos pratiques" card (hours, address + itinerary map, Facebook), used by
+    `JoinUs.astro` and `ContactForm.astro`.
   - `Courses.astro` — renders the schedule table from the `courses` content collection.
   - `LetMeGuideYou.astro`, `NoJudgement.astro` — "action card" content blocks meant to sit
     over a background-image section (see `Guided.astro` / `Education.astro`'s `.no-judgement`
@@ -38,8 +50,8 @@ Dev commands: `npm run dev` (astro dev), `npm run build`, `npm run preview`.
     them — follow that convention when adding a new one rather than abstracting it.
   - `Location.astro`, `SignUpDetails.astro` — small, currently minimal/WIP.
   - `components/atoms/Button.astro` — the only shared atom. Props: `inverted` (boolean) for
-    outline vs filled style. **Does not support `href`** — always renders a `<button>`, even
-    though a few call sites (`Why.astro`) pass `href` as if it were a link (dead prop, no-op).
+    outline vs filled style, `href` (renders an `<a>` instead of a `<button>`; other attributes
+    such as `target`/`rel` are forwarded). Without `href` it's a plain `<button>`.
   - `components/atoms/Card.astro` — used by `Activities.astro`'s grid.
 - `src/icons/*.astro` — inline SVG icon components, each takes a `class` prop for styling
   (`star`, `location`, `location-bis`, `time`, `shop`, `arrow`, `facebook`, `gift`, `surprise`,
@@ -58,14 +70,34 @@ Dev commands: `npm run dev` (astro dev), `npm run build`, `npm run preview`.
   schedule table (`Courses.astro`), edited via `/admin` (Netlify CMS) in production. Schema
   in `src/content/config.ts`.
 - `public/images/` — photos/illustrations, referenced by absolute path (`/images/...`).
-  **Not optimized** — multi-MB source photos are committed as-is; this is the existing
-  convention, not an oversight to silently fix.
+  Photos are **WebP**, capped at 2400px on the long edge (quality 80; ~90 for small images).
+  Convert new photos to `.webp` before committing — never commit multi-MB JPG/PNG originals.
+  Logos are **SVG** (`logo-club.svg`, `logo-no-text.svg`, vectorized from the raster logo in
+  Figma, which only exists as PNG there). Don't keep two files with identical content: reuse
+  the existing file (e.g. `le-club-au-poil-1.webp` serves several sections).
 - `public/icons/` — a few standalone SVGs referenced via CSS `content: url(...)` (e.g.
   quote marks in `Why.astro`, `heart-orange.svg` / `check-orange.svg` bullet markers).
 - `public/admin/` — Netlify CMS (Decap) config (`config.yml`) + entry point for editing the
   courses schedule at `/admin`.
-- `maquettes/` — design mockups (PNG exports from Figma/similar) dropped in by the user as
-  reference when asking for a new page; not part of the built site.
+- Design source: Figma file `22g4Xg8Vu4cOQQwHCxMp3B` ("Le Club de Teteghem"), page
+  "🎨 Maquettes" (node `300:2549`): desktop frames Home, Page Activités, Page Inscription,
+  Page Le Club. The 375px "Home Page" / "Menu" frames there are a template from another
+  project, not this site. There is no local `maquettes/` folder anymore.
+- **Membership** (`Membership.astro`, on `/inscription`): 2026-2027 prices, deadlines and required
+  documents come from the club's PDF fliers (HelloAsso URLs for registration and renewal are
+  constants in the frontmatter). Update it each season (renewal deadline, prices, URLs).
+- **`TeamCollage.astro`**: photo positions come from the Figma frame (1440 x 748), expressed as
+  centre/size in px in the `layout` array and converted to % (the section keeps a 1440/748 ratio
+  on desktop). Placement is passed as CSS variables so the mobile grid rules can override it;
+  entries flagged `decor` (repeated crops of the same photo) are hidden on mobile.
+- **`ContactCTA.astro`**: takes a `ratio` prop (image width / height). On desktop (> 1440px) the
+  section keeps that ratio so the whole photo stays visible at any screen width.
+- **Itinerary map** (`PracticalInfo.astro`): `public/images/itineraire.webp` is a static map of the club
+  (137 Route de Furnes, 51.041009 / 2.431721) stitched from OpenStreetMap tiles, attribution
+  included in the image — keep it. The "Voir l'itinéraire" link opens Google Maps directions.
+- **Contact form** (`ContactForm.astro`): Netlify Forms (`data-netlify`, name `contact`) with a
+  honeypot field (`bot-field`), posting to `/merci`. Only detected on a deployed Netlify build;
+  notifications are configured in the Netlify UI. Consider reCAPTCHA/Turnstile if spam appears.
 
 ## SCSS variables — full reference
 
@@ -149,3 +181,13 @@ Astro `<style scoped>` blocks don't inherit imports from elsewhere.
   where content already matches; only add a new section/component file when nothing existing
   fits, following the naming/structure conventions above (one file per content variant, not
   prop-driven variants).
+- **Styling a class passed into a child component from the parent's `<style scoped>` requires
+  `:global(.the-class)`.** Astro's scoping attribute is only added to elements written directly
+  in the current file — it does NOT propagate onto a child component's root element (e.g.
+  `<Heart class='heart' />` renders `<svg class="heart">` with no scope attribute). A plain
+  `.heart { ... }` rule compiles to `.heart[data-astro-cid-xxx]`, which silently matches
+  nothing, so every size/position change appears to do nothing. Existing examples of the
+  correct pattern: `Introduction.astro`'s `:global(.surprise)`, `Guided.astro`'s
+  `:global(.guided-card)`, `ContactCTA.astro`'s `:global(.contact-cta-card)`. If a style change
+  on a passed-in class has no visible effect, check for a missing `:global()` before anything
+  else.

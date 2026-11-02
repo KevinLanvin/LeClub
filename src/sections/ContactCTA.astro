@@ -1,10 +1,12 @@
 ---
 import GotQuestions from '../components/GotQuestions.astro'
 
-const { backgroundImage = '/images/sunny-brouette.png' } = Astro.props
+// `ratio` = width / height of the background image: on desktop the section keeps that
+// ratio so the whole photo stays visible (no crop) whatever the screen width.
+const { backgroundImage = '/images/sunny-brouette.webp', ratio = '2400 / 1139' } = Astro.props
 ---
 
-<section class='contact-cta' style={`background-image: url('${backgroundImage}')`}>
+<section class='contact-cta' style={`background-image: url('${backgroundImage}'); --ratio: ${ratio};`}>
 	<div class='content'>
 		<GotQuestions class='contact-cta-card' />
 	</div>
@@ -27,6 +29,12 @@ const { backgroundImage = '/images/sunny-brouette.png' } = Astro.props
 			:global(.contact-cta-card) {
 				width: 35rem;
 			}
+		}
+	}
+
+	@media (min-width: 1441px) {
+		.contact-cta {
+			aspect-ratio: var(--ratio);
 		}
 	}
 

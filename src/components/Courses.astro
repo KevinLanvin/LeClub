@@ -21,25 +21,25 @@ const courseColor: Record<(typeof coursesValues)[number], string> = {
 }
 
 const monitorAvatars = {
-	sandrine: 'monitrice.jpg',
-	laurent: 'monitor.jpg',
-	fred: 'monitor.jpg',
-	lena: 'monitor.jpg',
-	nathalie: 'monitor.jpg',
-	yohann: 'monitor.jpg',
-	marie: 'monitor.jpg',
-	patrick: 'monitor.jpg',
-	anthony: 'monitor.jpg',
-	valerie: 'monitor.jpg',
-	christophe: 'monitor.jpg',
-	badis: 'monitor.jpg',
-	kevin: 'monitor.jpg',
-	guillaume: 'monitor.jpg',
-	dominique: 'monitor.jpg',
+	sandrine: 'monitrice.webp',
+	laurent: 'monitor.webp',
+	fred: 'monitor.webp',
+	lena: 'monitor.webp',
+	nathalie: 'monitor.webp',
+	yohann: 'monitor.webp',
+	marie: 'monitor.webp',
+	patrick: 'monitor.webp',
+	anthony: 'monitor.webp',
+	valerie: 'monitor.webp',
+	christophe: 'monitor.webp',
+	badis: 'monitor.webp',
+	kevin: 'monitor.webp',
+	guillaume: 'monitor.webp',
+	dominique: 'monitor.webp',
 }
 ---
 
-<section class='courses'>
+<section id='planning' class='courses'>
 	<div class='title'>
 		<HeaderBefore />
 		<h2>Le planning des<br /> prochains cours</h2>
@@ -128,7 +128,7 @@ const monitorAvatars = {
 		}
 	</div>
 	<p>Le planning peut évoluer. Consultez-le régulièrement</p>
-	<Button>Voir le planning et les tarifs</Button>
+	<Button href='/inscription#adhesion'>Voir le planning et les tarifs</Button>
 </section>
 
 <style scoped lang='scss'>
@@ -219,6 +219,13 @@ const monitorAvatars = {
 				border: 2px solid colors.$white;
 				padding-block: gutters.$normal;
 				padding-inline: gutters.$small;
+			}
+			// monitors are left-aligned (header included) while the other columns stay centred
+			th:last-child {
+				text-align: left;
+			}
+			td.monitors {
+				justify-content: flex-start;
 			}
 		}
 		.planning-mobile {

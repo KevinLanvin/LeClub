@@ -1,0 +1,173 @@
+---
+import Button from '../components/atoms/Button.astro'
+import PracticalInfo from '../components/PracticalInfo.astro'
+---
+
+<section class='contact-form'>
+	<div class='content'>
+		<div class='card'>
+			<h3>Contact</h3>
+			<h1>
+				Une question ? <span class='orange'>Écrivez-nous</span> !
+			</h1>
+			<p>
+				Nous répondons dès que possible. Pour une première visite, vous pouvez
+				aussi venir directement sur place le samedi.
+			</p>
+			<form
+				name='contact'
+				method='POST'
+				action='/merci'
+				data-netlify='true'
+				netlify-honeypot='bot-field'
+			>
+				<input type='hidden' name='form-name' value='contact' />
+				<p class='bot-field'>
+					<label>Ne pas remplir : <input name='bot-field' tabindex='-1' autocomplete='off' /></label>
+				</p>
+				<label>
+					<span>Nom et prénom *</span>
+					<input type='text' name='name' autocomplete='name' required />
+				</label>
+				<label>
+					<span>Email *</span>
+					<input type='email' name='email' autocomplete='email' required />
+				</label>
+				<label>
+					<span>Téléphone</span>
+					<input type='tel' name='phone' autocomplete='tel' />
+				</label>
+				<label>
+					<span>Votre chien (nom, race, âge)</span>
+					<input type='text' name='dog' />
+				</label>
+				<label>
+					<span>Votre message *</span>
+					<textarea name='message' rows='5' required></textarea>
+				</label>
+				<label class='consent'>
+					<input type='checkbox' name='consent' required />
+					<span>
+						J’accepte que ces informations soient utilisées pour répondre à ma
+						demande. *
+					</span>
+				</label>
+				<Button>Envoyer le message</Button>
+			</form>
+		</div>
+		<aside class='practical-info'>
+			<PracticalInfo />
+		</aside>
+	</div>
+</section>
+
+<style lang='scss' scoped>
+	@use '../styles/colors';
+	@use '../styles/gutters';
+	@use '../styles/borders';
+	@use '../styles/shadows';
+	@use '../styles/fonts';
+
+	.contact-form {
+		width: 100%;
+		padding: gutters.$extra-extra-large 0;
+		color: colors.$text;
+		.content {
+			max-width: gutters.$small-max-width;
+			margin: auto;
+			display: grid;
+			grid-template-columns: 1.2fr 1fr;
+			gap: gutters.$extra-extra-large;
+			align-items: start;
+		}
+		.card {
+			background: colors.$white;
+			padding: gutters.$extra-large;
+			border-radius: borders.$radius;
+			box-shadow: shadows.$card;
+			display: flex;
+			flex-direction: column;
+			gap: gutters.$normal;
+			h3 {
+				text-transform: uppercase;
+				font-size: fonts.$regular;
+				font-weight: 300;
+				font-family: Poppins;
+			}
+			h1 {
+				color: colors.$main;
+				font-family: fonts.$family-title;
+				font-weight: 400;
+				font-size: fonts.$title;
+				line-height: fonts.$title;
+				.orange {
+					color: colors.$accent;
+					white-space: nowrap;
+				}
+			}
+		}
+		form {
+			display: flex;
+			flex-direction: column;
+			gap: gutters.$normal;
+			label {
+				display: flex;
+				flex-direction: column;
+				gap: gutters.$extra-small;
+				span {
+					font-weight: bold;
+				}
+			}
+			input:not([type='checkbox']),
+			textarea {
+				width: 100%;
+				font: inherit;
+				color: inherit;
+				padding: gutters.$normal;
+				background: colors.$background;
+				border: borders.$standard;
+				border-radius: borders.$radius-small;
+				&:focus {
+					border-color: colors.$accent-lighter;
+					box-shadow: 0 0 0 2px colors.$accent-lighter;
+				}
+			}
+			textarea {
+				resize: vertical;
+			}
+			.consent {
+				flex-direction: row;
+				align-items: flex-start;
+				gap: gutters.$small;
+				span {
+					font-weight: normal;
+					font-size: fonts.$small;
+				}
+				input {
+					margin-top: gutters.$extra-small;
+					accent-color: colors.$accent-lighter;
+				}
+			}
+			.bot-field {
+				display: none;
+			}
+		}
+	}
+
+	@media (max-width: 1440px) {
+		.contact-form {
+			padding: gutters.$extra-large gutters.$normal;
+			.content {
+				grid-template-columns: minmax(0, 1fr);
+				gap: gutters.$extra-large;
+			}
+			.card {
+				padding: gutters.$large;
+				h1 {
+					font-size: fonts.$title-mobile;
+					line-height: fonts.$title-mobile;
+				}
+			}
+		}
+	}
+</style>

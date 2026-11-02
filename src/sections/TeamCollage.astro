@@ -1,134 +1,103 @@
 ---
 import Button from '../components/atoms/Button.astro'
 
-const photos = [
+// Positions follow the Figma frame (1440 x 748): centre (cx, cy) and size (w, h) in px
+// of that frame, converted to % below so the collage scales with the section width.
+const FRAME_W = 1440
+const FRAME_H = 748
+
+const layout = [
 	{
-		src: '/images/le-club-au-poil-2.jpg',
+		src: '/images/le-club-au-poil-3.webp',
+		alt: 'Bénévole qui se cache le visage derrière sa main',
+		cx: 589, cy: 160, w: 376, h: 362, rotate: -2, z: 1,
+		position: '27% 50%', scale: 3, origin: '50% 29%',
+	},
+	{
+		src: '/images/le-club-au-poil-4.webp',
+		alt: 'Bénévole et son chien dans une brouette',
+		cx: 949, cy: 162, w: 408, h: 396, rotate: -3, z: 1,
+		position: 'center 40%', scale: 1, origin: 'center',
+	},
+	{
+		src: '/images/le-club-au-poil-1.webp',
+		alt: 'Équipe et chien sur une remorque',
+		cx: 1300, cy: 181, w: 420, h: 409, rotate: 7, z: 3,
+		position: '25% 50%', scale: 1.4, origin: '30% 70%',
+	},
+	{
+		src: '/images/le-club-au-poil-2.webp',
 		alt: 'Bénévole avec son chien dans une brouette',
-		left: 2,
-		top: 7,
-		width: 22,
-		height: 41,
-		rotate: -6,
-		z: 3,
-		position: 'center 30%',
+		cx: 236, cy: 175, w: 387, h: 374, rotate: -5, z: 2,
+		position: 'center 30%', scale: 1, origin: 'center',
 	},
 	{
-		src: '/images/le-club-au-poil-5.jpg',
+		src: '/images/le-club-au-poil-1.webp',
+		alt: 'Bénévole souriant sur une remorque',
+		cx: 15, cy: 285, w: 460, h: 400, rotate: 25, z: 1,
+		decor: true,
+		position: '10% 40%', scale: 1.5, origin: '20% 40%',
+	},
+	{
+		src: '/images/le-club-au-poil-1.webp',
+		alt: 'Tracteur du club',
+		cx: 420, cy: 650, w: 300, h: 280, rotate: 4, z: 1,
+		decor: true,
+		position: '85% 90%', scale: 1.8, origin: 'center',
+	},
+	{
+		src: '/images/le-club-au-poil-5.webp',
 		alt: 'Bénévole avec un chien noir et blanc dans une brouette',
-		left: 5,
-		top: 34,
-		width: 23,
-		height: 48,
-		rotate: -11,
-		z: 4,
-		position: 'center',
+		cx: 330, cy: 470, w: 420, h: 410, rotate: -31, z: 4,
+		position: 'center 45%', scale: 1, origin: 'center',
 	},
 	{
-		src: '/images/le-club-au-poil-6.jpg',
-		alt: 'Chien tricolore dans l’herbe',
-		left: -2,
-		top: 68,
-		width: 16,
-		height: 40,
-		rotate: -4,
-		z: 2,
-		position: 'center',
+		src: '/images/le-club-au-poil-6.webp',
+		alt: 'Berger australien la langue pendante',
+		cx: 124, cy: 600, w: 340, h: 420, rotate: -12, z: 3,
+		position: '25% 50%', scale: 1, origin: 'center',
 	},
 	{
-		src: '/images/le-club-au-poil-3.jpg',
-		alt: 'Bénévole en pleine séance',
-		left: 27,
-		top: 7,
-		width: 25,
-		height: 32,
-		rotate: -2,
-		z: 2,
-		position: 'center 15%',
-		scale: 1.8,
+		src: '/images/le-club-au-poil-7.webp',
+		alt: 'Bénévole souriant avec son chien dans les bras',
+		cx: 563, cy: 653, w: 389, h: 377, rotate: 0, z: 3,
+		position: 'center 25%', scale: 1.3, origin: '45% 35%',
 	},
 	{
-		src: '/images/le-club-au-poil-4.jpg',
-		alt: 'Bénévole prenant son chien dans les bras',
-		left: 50,
-		top: 9,
-		width: 21,
-		height: 30,
-		rotate: 4,
-		z: 2,
-		position: 'center 20%',
+		src: '/images/le-club-au-poil-8.webp',
+		alt: 'Deux bénévoles devant le local du club',
+		cx: 845, cy: 665, w: 380, h: 370, rotate: 9, z: 4,
+		position: '86% 50%', scale: 1.75, origin: '50% 30%',
 	},
 	{
-		src: '/images/le-club-au-poil-1.jpg',
-		alt: 'Chien et bénévoles dans une remorque',
-		left: 77,
-		top: 7,
-		width: 25,
-		height: 35,
-		rotate: 5,
-		z: 3,
-		position: '60% 55%',
-		scale: 1.4,
+		src: '/images/le-club-au-poil-9.webp',
+		alt: 'Border collie dans un champ de fleurs',
+		cx: 1060, cy: 470, w: 270, h: 370, rotate: -3, z: 5,
+		position: '47% 40%', scale: 1.3, origin: '45% 40%',
 	},
 	{
-		src: '/images/le-club-au-poil-9.jpg',
-		alt: 'Chien de face au milieu des fleurs',
-		left: 68,
-		top: 41,
-		width: 17,
-		height: 29,
-		rotate: -5,
-		z: 2,
-		position: 'center 25%',
+		src: '/images/le-club-au-poil-10.webp',
+		alt: 'Bénévole en blouson noir',
+		cx: 1300, cy: 520, w: 330, h: 420, rotate: 8, z: 3,
+		position: 'center', scale: 2.6, origin: '40% 28%',
 	},
 	{
-		src: '/images/le-club-au-poil-10.jpg',
-		alt: 'Bénévole souriant',
-		left: 81,
-		top: 37,
-		width: 20,
-		height: 48,
-		rotate: 3,
-		z: 3,
-		position: '45% 40%',
-		scale: 2.4,
-	},
-	{
-		src: '/images/le-club-au-poil-7.jpg',
-		alt: 'Bénévole prenant son chien dans les bras',
-		left: 27,
-		top: 71,
-		width: 25,
-		height: 35,
-		rotate: -4,
-		z: 2,
-		position: 'center 20%',
-	},
-	{
-		src: '/images/le-club-au-poil-8.jpg',
-		alt: 'Bénévoles souriants devant le chalet',
-		left: 49,
-		top: 70,
-		width: 25,
-		height: 35,
-		rotate: 2,
-		z: 2,
-		position: '75% 35%',
-		scale: 1.6,
-	},
-	{
-		src: '/images/le-club-au-poil-11.jpg',
-		alt: 'Chien et bénévoles dans une remorque',
-		left: 73,
-		top: 78,
-		width: 19,
-		height: 35,
-		rotate: 6,
-		z: 1,
-		position: '70% 40%',
-		scale: 1.6,
+		src: '/images/le-club-au-poil-1.webp',
+		alt: 'Chien sur la tondeuse du club',
+		cx: 1222, cy: 725, w: 380, h: 270, rotate: -8, z: 4,
+		decor: true,
+		position: '95% 60%', scale: 1.6, origin: '85% 60%',
 	},
 ]
+
+const photos = layout.map(({ cx, cy, w, h, ...photo }) => ({
+	...photo,
+	rotate: photo.rotate,
+	left: ((cx - w / 2) / FRAME_W) * 100,
+	top: ((cy - h / 2) / FRAME_H) * 100,
+	width: (w / FRAME_W) * 100,
+	height: (h / FRAME_H) * 100,
+}))
 ---
 
 <section class='team-collage'>
@@ -136,13 +105,13 @@ const photos = [
 		{
 			photos.map((photo) => (
 				<div
-					class='photo'
-					style={`left:${photo.left}%; top:${photo.top}%; width:${photo.width}%; height:${photo.height}%; transform: rotate(${photo.rotate}deg); z-index:${photo.z};`}
+					class:list={['photo', { decor: photo.decor }]}
+					style={`--left:${photo.left}%; --top:${photo.top}%; --width:${photo.width}%; --height:${photo.height}%; --rotate:${photo.rotate}deg; --z:${photo.z};`}
 				>
 					<img
 						src={photo.src}
 						alt={photo.alt}
-						style={`object-position:${photo.position}; transform: scale(${photo.scale ?? 1});`}
+						style={`object-position:${photo.position}; transform-origin:${photo.origin}; transform: scale(${photo.scale});`}
 					/>
 				</div>
 			))
@@ -156,7 +125,7 @@ const photos = [
 			Chacun donne un peu de son temps pour accompagner les autres, partager
 			son expérience… et continuer à apprendre.
 		</p>
-		<Button>Consulter le planning</Button>
+		<Button href='/inscription#planning'>Consulter le planning</Button>
 	</div>
 </section>
 
@@ -170,15 +139,44 @@ const photos = [
 	.team-collage {
 		position: relative;
 		width: 100%;
-		height: 58rem;
-		padding-bottom: 6rem;
-		background-color: colors.$white;
-		overflow: hidden;
+		aspect-ratio: 1440 / 748;
+		min-height: 40rem;
+		// starts with the previous section's green so the top edge never shows a seam
+		background: linear-gradient(to bottom, colors.$main-lighter, colors.$white 10rem);
+		// photos may bleed out of the bottom edge (like in the mockup); sides are clipped so the
+		// page never scrolls horizontally
+		overflow-x: clip;
+		z-index: 1;
+		margin-bottom: 13vw;
+		// fade from the previous section's green into the collage
+		&::before {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 11rem;
+			background: linear-gradient(
+				to bottom,
+				colors.$main-lighter 2rem,
+				transparent
+			);
+			z-index: 6;
+			pointer-events: none;
+		}
 		.photos {
 			position: absolute;
 			inset: 0;
+			// hide whatever pokes out of the top; the green fade above covers this edge
+			clip-path: inset(1rem 0 -15vw 0);
 			.photo {
 				position: absolute;
+				left: var(--left);
+				top: var(--top);
+				width: var(--width);
+				height: var(--height);
+				transform: rotate(var(--rotate));
+				z-index: var(--z);
 				padding: 3px;
 				background-color: colors.$white;
 				border-radius: 12px;
@@ -196,19 +194,19 @@ const photos = [
 		.card {
 			position: absolute;
 			left: 50%;
-			top: 50%;
+			top: 47%;
 			transform: translate(-50%, -50%);
 			z-index: 10;
 			width: 35rem;
 			background-color: colors.$white;
 			border-radius: borders.$radius;
 			box-shadow: shadows.$card;
-			padding: gutters.$extra-large;
+			padding: gutters.$extra-extra-large;
 			display: flex;
 			flex-direction: column;
 			align-items: center;
 			text-align: center;
-			gap: gutters.$large;
+			gap: gutters.$extra-large;
 			h2 {
 				font-family: fonts.$family-title;
 				font-weight: 400;
@@ -224,23 +222,36 @@ const photos = [
 	@media (max-width: 1440px) {
 		.team-collage {
 			height: auto;
+			aspect-ratio: auto;
+			min-height: 0;
 			display: flex;
 			flex-direction: column;
 			gap: gutters.$normal;
 			padding: gutters.$normal;
+			&::before {
+				display: none;
+			}
+			overflow-x: visible;
+			z-index: auto;
+			margin-bottom: 0;
 			.photos {
 				position: relative;
 				inset: unset;
+				clip-path: none;
 				display: grid;
-				grid-template-columns: repeat(3, 1fr);
+				grid-template-columns: repeat(2, 1fr);
 				gap: gutters.$small;
 				.photo {
 					position: relative;
 					left: unset;
 					top: unset;
 					width: 100%;
-					height: 6rem;
+					height: 8rem;
 					transform: none;
+					z-index: auto;
+					&.decor {
+						display: none;
+					}
 				}
 			}
 			.card {

@@ -8,16 +8,16 @@ import Button from './atoms/Button.astro'
 <header class='header'>
 	<nav class='nav'>
 		<a href='/' class='logo'>
-			<img src='/images/logo-club.png' alt='Logo' />
+			<img src='/images/logo-club.svg' alt='Logo' />
 		</a>
 		<div class='header__desktop'>
 			<a href='/le-club'>Le Club</a>
-			<a href='activites'>Les Activités</a>
-			<a href=''>Planning</a>
+			<a href='/activites'>Les Activités</a>
+			<a href='/inscription#planning'>Planning</a>
 		</div>
 		<div class='actions'>
-			<Button>S'inscrire</Button>
-			<Button inverted>Contact</Button>
+			<Button href='/inscription'>S'inscrire</Button>
+			<Button href='/contact' inverted>Contact</Button>
 		</div>
 		<div class='header__mobile'>
 			<input type='checkbox' id='hamburger-toggle' />
@@ -36,13 +36,15 @@ import Button from './atoms/Button.astro'
 			<div class='expandable'>
 				<span>Les Activités</span>
 				<div class='submenu'>
-					<a href='chiots'>Ecole du chiot</a>
-					<a href='education'>Education</a>
-					<a href='agility'>Agility</a>
-					<a href='obeissance'>Obéissance</a>
+					<a href='/activites#ecole-du-chiot'>Ecole du chiot</a>
+					<a href='/activites#education'>Education</a>
+					<a href='/activites#reeducation'>Rééducation</a>
+					<a href='/activites#balades'>Balades</a>
 				</div>
 			</div>
-			<a href=''>Planning</a>
+			<a href='/inscription#planning'>Planning</a>
+			<a href='/inscription'>S'inscrire</a>
+			<a href='/contact'>Contact</a>
 		</div>
 	</nav>
 </header>

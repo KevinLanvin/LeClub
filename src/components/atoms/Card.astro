@@ -1,7 +1,7 @@
 ---
 import Button from './Button.astro'
 
-const { image, title, description, imageAlt, details } = Astro.props
+const { image, title, description, imageAlt, details, href } = Astro.props
 ---
 
 <div class='card'>
@@ -10,7 +10,7 @@ const { image, title, description, imageAlt, details } = Astro.props
 		<h4>{title}</h4>
 		<p class='description'>{description}</p>
 		<p class='details'>{details}</p>
-		<Button>Découvrir l'activité</Button>
+		<Button href={href}>Découvrir l'activité</Button>
 	</div>
 </div>
 

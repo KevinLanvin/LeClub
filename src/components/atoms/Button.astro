@@ -1,10 +1,11 @@
 ---
-const { inverted = false } = Astro.props
+const { inverted = false, href, ...attrs } = Astro.props
+const Tag = href ? 'a' : 'button'
 ---
 
-<button class:list={['button', { inverted }]}>
+<Tag href={href} class:list={['button', { inverted }]} {...attrs}>
 	<slot />
-</button>
+</Tag>
 
 <style lang='scss' scoped>
 	@use '../../styles/colors';
@@ -12,6 +13,11 @@ const { inverted = false } = Astro.props
 	@use 'sass:color';
 
 	.button {
+		display: inline-block;
+		text-align: center;
+		text-decoration: none;
+		font-size: 13.3333px;
+		line-height: normal;
 		background-color: colors.$accent-lighter;
 		color: white;
 		padding: 12px 20px;

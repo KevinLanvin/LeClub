@@ -18,12 +18,12 @@ import Surprise from '../icons/surprise.astro'
 			ensemble, à leur rythme.
 		</p>
 		<div class='actions'>
-			<Button>Découvrir les activités</Button>
-			<Button inverted>Consulter le planning</Button>
+			<Button href='/activites'>Découvrir les activités</Button>
+			<Button href='/inscription#planning' inverted>Consulter le planning</Button>
 		</div>
 	</div>
 	<div class='illustration'>
-		<img src='/images/intro.png' alt='Dog' />
+		<img src='/images/intro.webp' alt='Dog' />
 		<Surprise class='surprise' />
 	</div>
 	<div class='informations'>
@@ -113,7 +113,7 @@ import Surprise from '../icons/surprise.astro'
 			aspect-ratio: calc(884 / 430);
 			z-index: -1;
 			background-color: colors.$main;
-			mask: url('/images/logo-no-text.png');
+			mask: url('/images/logo-no-text.svg');
 			mask-repeat: no-repeat;
 			mask-position: center;
 			mask-size: contain;

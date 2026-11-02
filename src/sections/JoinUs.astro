@@ -1,11 +1,8 @@
 ---
-import Arrow from '../icons/arrow.astro'
 import Shop from '../icons/shop.astro'
 import SurpriseAccent from '../icons/surprise-accent.astro'
-import Time from '../icons/time.astro'
 import Button from '../components/atoms/Button.astro'
-import LocationBis from '../icons/location-bis.astro'
-import Facebook from '../icons/facebook.astro'
+import PracticalInfo from '../components/PracticalInfo.astro'
 ---
 
 <section class='join-us'>
@@ -53,38 +50,9 @@ import Facebook from '../icons/facebook.astro'
 				<SurpriseAccent class='surprise-icon' />
 			</div>
 		</div>
-		<Button>Nous contacter</Button>
+		<Button href='/contact'>Nous contacter</Button>
 	</div>
-	<div class='details'>
-		<h3>Infos pratiques</h3>
-		<div class='detail'>
-			<div class='illu'>
-				<Time />
-			</div>
-			<div class='text'>
-				<h4>Horaires</h4>
-				<p>Le samedi à 14h</p>
-				<a href=''>Voir le planning <Arrow /></a>
-			</div>
-		</div>
-		<div class='detail'>
-			<div class='illu'><LocationBis /></div>
-			<div class='text'>
-				<h4>Lieu</h4>
-				<p>Route de Furnes<br />Teteghem</p>
-				<p>Parking gratuit</p>
-				<a href=''>Voir l'itinéraire -></a>
-			</div>
-		</div>
-		<div class='facebook'>
-			<h4 class='find-us'>Retrouvez-nous sur :</h4>
-			<a
-				href='https://www.facebook.com/votre-page'
-				target='_blank'
-				rel='noopener noreferrer'><Facebook /></a
-			>
-		</div>
-	</div>
+	<PracticalInfo />
 </section>
 
 <style scoped lang='scss'>
@@ -176,37 +144,6 @@ import Facebook from '../icons/facebook.astro'
 						height: 5rem;
 					}
 				}
-			}
-		}
-		.details {
-			background-color: colors.$white;
-			border-radius: borders.$radius;
-			padding: gutters.$extra-large;
-			display: flex;
-			flex-direction: column;
-			gap: gutters.$large;
-			height: 100%;
-			h3 {
-				font-family: fonts.$family-title;
-				font-weight: 400;
-				font-size: fonts.$subtitle;
-				line-height: fonts.$subtitle;
-			}
-			.detail {
-				display: flex;
-				gap: gutters.$large;
-				a {
-					color: colors.$accent-lighter;
-					display: flex;
-					align-items: center;
-					gap: gutters.$small;
-				}
-			}
-			.facebook {
-				display: flex;
-				align-items: center;
-				justify-content: space-between;
-				margin-top: auto;
 			}
 		}
 	}

@@ -1,0 +1,107 @@
+---
+import Button from '../components/atoms/Button.astro'
+---
+
+<section class='thank-you'>
+	<div class='content'>
+		<div class='card'>
+			<h3>Message envoyé</h3>
+			<h1>
+				<span class='orange'>Merci</span> pour votre message !
+			</h1>
+			<p>
+				Nous l’avons bien reçu et nous vous répondrons dès que possible. En
+				attendant, venez nous rencontrer : on ne mord pas !
+			</p>
+			<div class='actions'>
+				<Button href='/'>Retour à l’accueil</Button>
+				<Button href='/activites' inverted>Découvrir les activités</Button>
+			</div>
+		</div>
+		<div class='illustration'>
+			<img src='/images/le-club-au-poil-6.webp' alt='Chien heureux dans l’herbe' />
+		</div>
+	</div>
+</section>
+
+<style lang='scss' scoped>
+	@use '../styles/colors';
+	@use '../styles/gutters';
+	@use '../styles/borders';
+	@use '../styles/shadows';
+	@use '../styles/fonts';
+
+	.thank-you {
+		width: 100%;
+		padding: gutters.$extra-extra-large 0;
+		color: colors.$text;
+		.content {
+			max-width: gutters.$small-max-width;
+			margin: auto;
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: gutters.$extra-extra-large;
+			align-items: center;
+		}
+		.card {
+			background: colors.$white;
+			padding: gutters.$extra-large;
+			border-radius: borders.$radius;
+			box-shadow: shadows.$card;
+			display: flex;
+			flex-direction: column;
+			gap: gutters.$normal;
+			h3 {
+				text-transform: uppercase;
+				font-size: fonts.$regular;
+				font-weight: 300;
+				font-family: Poppins;
+			}
+			h1 {
+				color: colors.$main;
+				font-family: fonts.$family-title;
+				font-weight: 400;
+				font-size: fonts.$title;
+				line-height: fonts.$title;
+				.orange {
+					color: colors.$accent;
+				}
+			}
+		}
+		.actions {
+			display: flex;
+			gap: gutters.$normal;
+		}
+		.illustration img {
+			display: block;
+			width: 100%;
+			height: 30rem;
+			object-fit: cover;
+			border-radius: borders.$radius;
+		}
+	}
+
+	@media (max-width: 1440px) {
+		.thank-you {
+			padding: gutters.$extra-large gutters.$normal;
+			.content {
+				grid-template-columns: minmax(0, 1fr);
+				gap: gutters.$extra-large;
+			}
+			.card {
+				padding: gutters.$large;
+				h1 {
+					font-size: fonts.$title-mobile;
+					line-height: fonts.$title-mobile;
+				}
+			}
+			.actions {
+				flex-direction: column;
+			}
+			.illustration img {
+				height: auto;
+				aspect-ratio: 1.2;
+			}
+		}
+	}
+</style>

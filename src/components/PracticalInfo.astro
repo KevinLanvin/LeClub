@@ -1,0 +1,106 @@
+---
+import Arrow from '../icons/arrow.astro'
+import Time from '../icons/time.astro'
+import LocationBis from '../icons/location-bis.astro'
+import Facebook from '../icons/facebook.astro'
+
+const directionsUrl =
+	'https://www.google.com/maps/dir/?api=1&destination=137+Route+de+Furnes,+59229+T%C3%A9teghem-Coudekerque-Village'
+---
+
+<div class='details'>
+	<h3>Infos pratiques</h3>
+	<div class='detail'>
+		<div class='illu'>
+			<Time />
+		</div>
+		<div class='text'>
+			<h4>Horaires</h4>
+			<p>Le samedi à 14h</p>
+			<a href='/inscription#planning'>Voir le planning <Arrow /></a>
+		</div>
+	</div>
+	<div class='detail'>
+		<div class='illu'><LocationBis /></div>
+		<div class='text'>
+			<h4>Lieu</h4>
+			<p>
+				137 Route de Furnes<br />59229 Téteghem-Coudekerque-Village
+			</p>
+			<p>Parking gratuit</p>
+			<a href={directionsUrl} target='_blank' rel='noopener noreferrer'
+				>Voir l'itinéraire <Arrow /></a
+			>
+			<a
+				class='map'
+				href={directionsUrl}
+				target='_blank'
+				rel='noopener noreferrer'
+				aria-label="Ouvrir l'itinéraire dans Google Maps"
+			>
+				<img
+					src='/images/itineraire.webp'
+					alt='Plan : le club se situe au 137 route de Furnes, le long du canal'
+				/>
+			</a>
+		</div>
+	</div>
+	<div class='facebook'>
+		<h4 class='find-us'>Retrouvez-nous sur :</h4>
+		<a
+			href='https://www.facebook.com/groups/1000283000064259/'
+			target='_blank'
+			rel='noopener noreferrer'><Facebook /></a
+		>
+	</div>
+</div>
+
+<style scoped lang='scss'>
+	@use '../styles/colors';
+	@use '../styles/borders';
+	@use '../styles/gutters';
+	@use '../styles/fonts';
+
+	.details {
+		background-color: colors.$white;
+		border-radius: borders.$radius;
+		padding: gutters.$extra-large;
+		display: flex;
+		flex-direction: column;
+		gap: gutters.$large;
+		height: 100%;
+		h3 {
+			font-family: fonts.$family-title;
+			font-weight: 400;
+			font-size: fonts.$subtitle;
+			line-height: fonts.$subtitle;
+		}
+		.detail {
+			display: flex;
+			gap: gutters.$large;
+			a {
+				color: colors.$accent-lighter;
+				display: flex;
+				align-items: center;
+				gap: gutters.$small;
+			}
+			.map {
+				margin-top: gutters.$normal;
+				img {
+					display: block;
+					width: 100%;
+					aspect-ratio: 8 / 5;
+					object-fit: cover;
+					border-radius: borders.$radius-small;
+					border: borders.$standard;
+				}
+			}
+		}
+		.facebook {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			margin-top: auto;
+		}
+	}
+</style>

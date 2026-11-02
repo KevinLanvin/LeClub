@@ -1,0 +1,263 @@
+---
+import Button from '../components/atoms/Button.astro'
+
+const registrationUrl =
+	'https://www.helloasso.com/associations/le-cynophile-ludique-et-urbain-du-blootland/adhesions/adhesion-2026-2027-1'
+const renewalUrl =
+	'https://www.helloasso.com/associations/le-cynophile-ludique-et-urbain-du-blootland/adhesions/renouvellement-2027'
+---
+
+<section id='adhesion' class='membership'>
+	<div class='content'>
+		<div class='heading'>
+			<h2>Adhésion & <span class='accent'>renouvellement</span></h2>
+			<p>
+				Toutes les adhésions se font en ligne via HelloAsso. Préparez vos
+				documents, l’inscription ne prend que quelques minutes.
+			</p>
+		</div>
+		<div class='columns'>
+			<article class='card registration'>
+				<span class='tag'>Nouvelle inscription</span>
+				<h3>Adhésion 2026-2027</h3>
+				<p class='validity'>
+					Pour les adhésions à partir du 1er octobre 2026, valable jusqu’au
+					<strong>31 décembre 2027</strong>.
+				</p>
+				<div class='price'>
+					<span class='amount'>110&nbsp;€</span>
+					<span class='label'>adhésion principale</span>
+				</div>
+				<ul class='extras'>
+					<li><span>Adhérent supplémentaire</span><strong>15&nbsp;€</strong></li>
+					<li><span>Chien supplémentaire</span><strong>10&nbsp;€</strong></li>
+				</ul>
+				<div class='documents'>
+					<h4>Documents nécessaires</h4>
+					<ul class='checklist'>
+						<li>Pièce d’identité de chaque personne inscrite</li>
+						<li>ICAD du ou des chiens</li>
+						<li>Vaccins à jour du ou des chiens</li>
+						<li>Assurance responsabilité civile (assurance du domicile)</li>
+						<li>Certificat de naissance (si le chien est LOF, même non confirmé)</li>
+					</ul>
+				</div>
+				<Button href={registrationUrl} target='_blank' rel='noopener noreferrer'>
+					S’inscrire sur HelloAsso
+				</Button>
+			</article>
+			<article class='card renewal'>
+				<span class='tag'>Renouvellement</span>
+				<h3>Renouvellement 2027</h3>
+				<p class='validity'>
+					Réservé aux adhérents 2026. Date limite :
+					<strong>31 janvier 2027</strong>.
+				</p>
+				<div class='price'>
+					<span class='amount'>50&nbsp;€</span>
+					<span class='label'>adhésion principale</span>
+				</div>
+				<ul class='extras'>
+					<li><span>Adhérent supplémentaire</span><strong>15&nbsp;€</strong></li>
+					<li><span>Chien supplémentaire</span><strong>10&nbsp;€</strong></li>
+				</ul>
+				<div class='documents'>
+					<h4>Documents nécessaires</h4>
+					<ul class='checklist'>
+						<li>Vaccins à jour du ou des chiens</li>
+						<li>Assurance responsabilité civile (assurance du domicile)</li>
+					</ul>
+				</div>
+				<Button
+					href={renewalUrl}
+					target='_blank'
+					rel='noopener noreferrer'
+					inverted
+				>
+					Renouveler sur HelloAsso
+				</Button>
+			</article>
+		</div>
+		<div class='category'>
+			<h4>Chiens de catégories 1 et 2</h4>
+			<p>
+				Sélectionnez l’option correspondante sur HelloAsso, des documents
+				spécifiques sont requis. Le tarif est le même que pour un chien non
+				catégorisé.
+			</p>
+			<ul class='checklist'>
+				<li>Permis de détention de chien dangereux</li>
+				<li>Assurance spécifique chien de catégorie</li>
+				<li>Évaluation comportementale si le chien a plus d’un an</li>
+			</ul>
+		</div>
+	</div>
+</section>
+
+<style lang='scss' scoped>
+	@use '../styles/colors';
+	@use '../styles/gutters';
+	@use '../styles/borders';
+	@use '../styles/shadows';
+	@use '../styles/fonts';
+
+	.membership {
+		width: 100%;
+		padding: gutters.$extra-extra-large 0;
+		background-color: colors.$accent-light;
+		color: colors.$text;
+		.content {
+			max-width: gutters.$small-max-width;
+			margin: auto;
+			display: flex;
+			flex-direction: column;
+			gap: gutters.$extra-large;
+		}
+		.heading {
+			text-align: center;
+			display: flex;
+			flex-direction: column;
+			gap: gutters.$normal;
+			align-items: center;
+			h2 {
+				color: colors.$main;
+				font-family: fonts.$family-title;
+				font-size: fonts.$title;
+				line-height: fonts.$title;
+				.accent {
+					color: colors.$accent;
+				}
+			}
+			p {
+				max-width: 40rem;
+			}
+		}
+		.columns {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			column-gap: gutters.$extra-large;
+			row-gap: 0;
+		}
+		.card {
+			background: colors.$white;
+			border-radius: borders.$radius;
+			box-shadow: shadows.$card;
+			padding: gutters.$extra-large;
+			// one row per block (tag, title, validity, price, extras, documents, button), shared
+			// with the neighbouring card so prices and buttons line up
+			display: grid;
+			grid-row: span 7;
+			grid-template-rows: subgrid;
+			row-gap: gutters.$large;
+			h3 {
+				font-family: fonts.$family-title;
+				font-weight: 400;
+				font-size: fonts.$subtitle;
+				color: colors.$main;
+			}
+			.tag {
+				justify-self: center;
+				padding: gutters.$extra-small gutters.$normal;
+				border-radius: borders.$radius-small;
+				font-size: fonts.$small;
+				font-weight: bold;
+			}
+			.price {
+				display: flex;
+				align-items: baseline;
+				justify-content: center;
+				gap: gutters.$small;
+				padding: gutters.$normal;
+				border-radius: borders.$radius-small;
+				background: colors.$table-row;
+				.amount {
+					font-family: fonts.$family-title;
+					font-size: fonts.$title;
+					line-height: fonts.$title;
+					color: colors.$accent;
+				}
+			}
+			.extras {
+				padding: 0;
+				li {
+					display: flex;
+					justify-content: space-between;
+					padding: gutters.$small gutters.$normal;
+					&:not(:last-child) {
+						border-bottom: 1px solid colors.$table-row;
+					}
+				}
+			}
+			.documents {
+				display: flex;
+				flex-direction: column;
+				gap: gutters.$small;
+			}
+			h4 {
+				font-weight: bold;
+			}
+			> :global(.button) {
+				align-self: end;
+				padding: gutters.$normal gutters.$extra-large;
+				font-size: fonts.$regular;
+				font-weight: bold;
+				border-radius: borders.$radius-small;
+			}
+		}
+		.registration .tag {
+			background: colors.$red;
+		}
+		.renewal .tag {
+			background: colors.$main-light;
+		}
+		.checklist {
+			padding: 0;
+			li {
+				display: flex;
+				align-items: flex-start;
+				gap: gutters.$small;
+				text-align: left;
+				&::before {
+					content: url('/icons/check-orange.svg');
+					flex: none;
+				}
+			}
+		}
+		.category {
+			background: colors.$main-lighter;
+			border-radius: borders.$radius;
+			padding: gutters.$extra-large;
+			display: flex;
+			flex-direction: column;
+			gap: gutters.$small;
+			h4 {
+				font-weight: bold;
+			}
+			.checklist {
+				margin-top: gutters.$normal;
+			}
+		}
+	}
+
+	@media (max-width: 1440px) {
+		.membership {
+			padding: gutters.$extra-large gutters.$normal;
+			.heading h2 {
+				font-size: fonts.$title-mobile;
+				line-height: fonts.$title-mobile;
+			}
+			.columns {
+				grid-template-columns: minmax(0, 1fr);
+				row-gap: gutters.$extra-large;
+			}
+			.card {
+				grid-row: auto;
+				grid-template-rows: none;
+			}
+			.card,
+			.category {
+				padding: gutters.$large;
+			}
+		}
+	}
+</style>
