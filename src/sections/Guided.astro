@@ -9,6 +9,7 @@ import LetMeGuideYou from '../components/LetMeGuideYou.astro'
 </section>
 
 <style scoped lang='scss'>
+	@use '../styles/colors';
 	@use '../styles/gutters';
 
 	.guided {
@@ -23,6 +24,23 @@ import LetMeGuideYou from '../components/LetMeGuideYou.astro'
 			margin: auto;
 			:global(.guided-card) {
 				width: 35rem;
+			}
+		}
+	}
+
+	@media (max-width: 1440px) {
+		.guided {
+			// photo shown whole at the top, card full width overlapping its bottom edge
+			padding: 10rem gutters.$normal gutters.$normal;
+			background-size: 100% auto;
+			background-position: top;
+			background-repeat: no-repeat;
+			background-color: colors.$background;
+			.content {
+				width: 100%;
+				:global(.guided-card) {
+					width: 100%;
+				}
 			}
 		}
 	}

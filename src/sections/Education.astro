@@ -104,6 +104,7 @@ import NoJudgement from '../components/NoJudgement.astro'
 	@media (max-width: 1440px) {
 		.education {
 			padding-top: 8rem;
+			padding-bottom: gutters.$extra-large;
 			margin-top: -3rem;
 			margin-bottom: -3rem;
 			.content {
@@ -125,9 +126,30 @@ import NoJudgement from '../components/NoJudgement.astro'
 					}
 				}
 				.no-judgement {
-					.education-school-illustration {
+					// the empty meadow on the right is only useful on desktop: on mobile the photo is its own
+					// band, zoomed on the dog, with the card slightly overlapping its bottom edge
+					width: 100%;
+					padding: 0;
+					margin-top: gutters.$large;
+					margin-bottom: 0;
+					background: none;
+					border-radius: 0;
+					flex-direction: column;
+					justify-content: flex-start;
+					&::before {
+						content: '';
+						display: block;
+						height: 19rem;
+						background-image: url('/images/education-school.webp');
+						background-size: auto 100%;
+						background-position: left top;
+						background-repeat: no-repeat;
+						border-radius: borders.$radius;
+					}
+					:global(.no-judgement-card) {
 						width: 100%;
-						margin-top: gutters.$large;
+						margin-top: -2rem;
+						position: relative;
 					}
 				}
 			}

@@ -169,14 +169,29 @@ import PracticalInfo from '../components/PracticalInfo.astro'
 					}
 				}
 				.checklist {
-					display: flex;
-					flex-direction: column;
+					// bag icon and orange splash side by side on top, text below
+					display: grid;
+					grid-template-columns: auto 1fr;
+					grid-template-areas:
+						'illu surprise'
+						'text text';
+					column-gap: gutters.$normal;
+					row-gap: gutters.$normal;
+					.illu {
+						grid-area: illu;
+					}
+					.text {
+						grid-area: text;
+					}
 					.surprise {
-						display: flex;
-						justify-content: end;
-						height: 2rem;
-						:deep(.surprise-icon) {
-							width: 2rem;
+						grid-area: surprise;
+						align-self: center;
+						justify-self: start;
+						width: 3.5rem;
+						:global(.surprise-icon) {
+							display: block;
+							width: 100%;
+							height: auto;
 						}
 					}
 				}

@@ -3,7 +3,8 @@ import Button from './atoms/Button.astro'
 ---
 
 <div class='disclaimer'>
-	Premier cours d’essai gratuit (carnet de vaccination obligatoire) !
+	<span>Premier cours d’essai gratuit !</span>
+	<span>Carnet de vaccination obligatoire.</span>
 </div>
 <header class='header'>
 	<nav class='nav'>
@@ -68,11 +69,17 @@ import Button from './atoms/Button.astro'
 		color: colors.$white;
 		padding: gutters.$small;
 		display: flex;
+		flex-wrap: wrap;
 		justify-content: center;
+		column-gap: 0.4em;
 		font-family: Poppins;
 		font-weight: bold;
 		font-size: fonts.$small;
 		text-align: center;
+		// each sentence stays whole: on narrow screens they stack on two lines instead of breaking mid-sentence
+		span {
+			white-space: nowrap;
+		}
 	}
 	.header {
 		background-color: colors.$white;

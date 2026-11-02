@@ -54,4 +54,14 @@ const { class: className } = Astro.props
 			gap: gutters.$large;
 		}
 	}
+
+	@media (max-width: 1440px) {
+		.action-card {
+			padding: gutters.$large;
+			.actions {
+				grid-template-columns: 1fr;
+				gap: gutters.$normal;
+			}
+		}
+	}
 </style>

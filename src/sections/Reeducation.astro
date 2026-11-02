@@ -108,7 +108,8 @@
 	}
 	@media (max-width: 1440px) {
 		.reeducation {
-			padding-top: 25rem;
+			// Education no longer overlaps on mobile; 3rem is cancelled by its negative bottom margin
+			padding-top: 6rem;
 			grid-template-columns: 1fr;
 			width: gutters.$mobile-width;
 			.content {
