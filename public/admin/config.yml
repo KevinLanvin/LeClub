@@ -2,6 +2,7 @@ backend:
   name: git-gateway
   branch: main
 local_backend: true
+locale: fr
 publish_mode: simple
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
@@ -18,49 +19,61 @@ collections:
         name: courses
         file: src/content/courses/index.md
         fields:
-          - label: Date
-            name: date
-            widget: date
-          - label: Cours
-            name: courses
+          - label: Jours de cours
+            label_singular: Jour
+            name: days
             widget: list
-            summary: "{{hour_interval}} | {{courseName}}"
+            summary: "{{date}}"
+            hint: "Un élément par jour de cours (ex : un mercredi et un samedi dans la même semaine)"
             fields:
-              - label: Horaire
-                name: hour_interval
-                widget: string
-                hint: "ex: 09h30 - 10h30"
-              - label: Nom du cours
-                name: courseName
-                widget: select
-                multiple: false
-                required: true
-                options:
-                  - { label: 2 - 4 mois, value: 2 - 4 mois }
-                  - { label: 4 - 6 mois, value: 4 - 6 mois }
-                  - { label: 6 mois et +, value: 6 mois et + }
-                  - { label: Rééducation, value: Rééducation }
-                  - { label: Intermédiaire, value: Intermédiaire }
-                  - { label: Avancé, value: Avancé }
-                  - { label: CSAU, value: CSAU }
-              - label: Enseignants
-                name: teachers
-                widget: select
-                multiple: true
-                required: true
-                options:
-                  - { label: Anthony, value: anthony }
-                  - { label: Badis, value: badis }
-                  - { label: Christophe, value: christophe }
-                  - { label: Dominique, value: dominique }
-                  - { label: Fred, value: fred }
-                  - { label: Guillaume, value: guillaume }
-                  - { label: Kevin, value: kevin }
-                  - { label: Laurent, value: laurent }
-                  - { label: Léna, value: lena }
-                  - { label: Marie-Christine, value: marie }
-                  - { label: Nathalie, value: nathalie }
-                  - { label: Patrick, value: patrick }
-                  - { label: Sandrine, value: sandrine }
-                  - { label: Valérie, value: valerie }
-                  - { label: Yohann, value: yohann }
+              - label: Date
+                name: date
+                widget: datetime
+                date_format: "DD/MM/YYYY"
+                time_format: false
+                format: "YYYY-MM-DD"
+                picker_utc: true
+              - label: Cours
+                name: courses
+                widget: list
+                summary: "{{hour_interval}} | {{courseName}}"
+                fields:
+                  - label: Horaire
+                    name: hour_interval
+                    widget: string
+                    hint: "ex: 09h30 - 10h30"
+                  - label: Nom du cours
+                    name: courseName
+                    widget: select
+                    multiple: false
+                    required: true
+                    options:
+                      - { label: 2 - 4 mois, value: 2 - 4 mois }
+                      - { label: 4 - 6 mois, value: 4 - 6 mois }
+                      - { label: 6 mois et +, value: 6 mois et + }
+                      - { label: Rééducation, value: Rééducation }
+                      - { label: Intermédiaire, value: Intermédiaire }
+                      - { label: Avancé, value: Avancé }
+                      - { label: CSAU, value: CSAU }
+                      - { label: Secrétariat, value: Secrétariat }
+                  - label: Moniteurs
+                    name: teachers
+                    widget: select
+                    multiple: true
+                    required: true
+                    options:
+                      - { label: Anthony, value: anthony }
+                      - { label: Badis, value: badis }
+                      - { label: Christophe, value: christophe }
+                      - { label: Dominique, value: dominique }
+                      - { label: Fred, value: fred }
+                      - { label: Guillaume, value: guillaume }
+                      - { label: Kevin, value: kevin }
+                      - { label: Laurent, value: laurent }
+                      - { label: Léna, value: lena }
+                      - { label: Marie-Christine, value: marie }
+                      - { label: Nathalie, value: nathalie }
+                      - { label: Patrick, value: patrick }
+                      - { label: Sandrine, value: sandrine }
+                      - { label: Valérie, value: valerie }
+                      - { label: Yohann, value: yohann }

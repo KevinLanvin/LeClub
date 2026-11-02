@@ -68,7 +68,9 @@ Dev commands: `npm run dev` (astro dev), `npm run build`, `npm run preview`.
   in `MainLayout.astro`.
 - `src/content/courses/index.md` — the single content-collection entry driving the
   schedule table (`Courses.astro`), edited via `/admin` (Netlify CMS) in production. Schema
-  in `src/content/config.ts`.
+  in `src/content/config.ts`: a `days` list, each day with its own `date` (YYYY-MM-DD) and
+  `courses`, so several days per week are possible; days are sorted by date when rendered.
+  The same structure is declared in `public/admin/config.yml` (keep both in sync).
 - `public/images/` — photos/illustrations, referenced by absolute path (`/images/...`).
   Photos are **WebP**, capped at 2400px on the long edge (quality 80; ~90 for small images).
   Convert new photos to `.webp` before committing — never commit multi-MB JPG/PNG originals.

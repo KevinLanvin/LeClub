@@ -6,7 +6,16 @@ import type { coursesValues } from '../content/config'
 import Button from './atoms/Button.astro'
 
 const entries = await getCollection('courses')
-const { date, courses } = entries[0].data
+// one block per day with courses, in chronological order
+const days = [...entries[0].data.days].sort(
+	(a, b) => a.date.getTime() - b.date.getTime(),
+)
+const formatDate = (date: Date) =>
+	date.toLocaleDateString('fr-FR', {
+		weekday: 'long',
+		day: 'numeric',
+		month: 'long',
+	})
 const capitalize = ([first, ...rest]: string): string =>
 	`${first.toUpperCase()}${rest.join('')}`
 
@@ -18,6 +27,7 @@ const courseColor: Record<(typeof coursesValues)[number], string> = {
 	Intermédiaire: 'orange',
 	Avancé: 'red',
 	CSAU: 'red',
+	Secrétariat: 'neutral',
 }
 
 const monitorAvatars = {
@@ -56,15 +66,12 @@ const monitorAvatars = {
 		</thead>
 		<tbody>
 			{
-				courses.map((course, index) => (
+				days.map(({ date, courses }) =>
+					courses.map((course, index) => (
 					<tr>
 						{index === 0 && (
-							<td class='date' rowspan='0'>
-								{date.toLocaleDateString('fr-FR', {
-									weekday: 'long',
-									day: 'numeric',
-									month: 'long',
-								})}
+							<td class='date' rowspan={courses.length}>
+								{formatDate(date)}
 							</td>
 						)}
 						<td>{course.hour_interval}</td>
@@ -91,42 +98,39 @@ const monitorAvatars = {
 							</span>
 						</td>
 					</tr>
-				))
+					)),
+				)
 			}
 		</tbody>
 	</table>
 	<div class='planning-mobile'>
-		<div class='date'>
-			{
-				date.toLocaleDateString('fr-FR', {
-					weekday: 'long',
-					day: 'numeric',
-					month: 'long',
-				})
-			}
-		</div>
 		{
-			courses.map((course) => (
-				<div class='course'>
-					<div>{course.hour_interval}</div>
-					<div class:list={['course-name', courseColor[course.courseName]]}>
-						{course.courseName}
-					</div>
-					<div class='monitors'>
-						{/* Avatars hidden until we have everyone's photo
-						<div class='avatars'>
-							{course.teachers.map((monitor) => (
-								<img
-									class='avatar'
-									src={`/images/moniteurs/${monitorAvatars[monitor]}`}
-								/>
-							))}
+			days.map(({ date, courses }) => (
+				<div class='day'>
+					<div class='date'>{formatDate(date)}</div>
+					{courses.map((course) => (
+						<div class='course'>
+							<div>{course.hour_interval}</div>
+							<div class:list={['course-name', courseColor[course.courseName]]}>
+								{course.courseName}
+							</div>
+							<div class='monitors'>
+								{/* Avatars hidden until we have everyone's photo
+								<div class='avatars'>
+									{course.teachers.map((monitor) => (
+										<img
+											class='avatar'
+											src={`/images/moniteurs/${monitorAvatars[monitor]}`}
+										/>
+									))}
+								</div>
+								*/}
+								<span class='names'>
+									{course.teachers.map(capitalize).join(' & ')}
+								</span>
+							</div>
 						</div>
-						*/}
-						<span class='names'>
-							{course.teachers.map(capitalize).join(' & ')}
-						</span>
-					</div>
+					))}
 				</div>
 			))
 		}
@@ -189,6 +193,9 @@ const monitorAvatars = {
 		}
 		.blue {
 			background-color: colors.$blue;
+		}
+		.neutral {
+			background-color: colors.$main-lighter;
 		}
 		.monitors {
 			display: flex;
@@ -258,11 +265,18 @@ const monitorAvatars = {
 				border: borders.$button;
 				border-radius: borders.$radius;
 				overflow: hidden;
-				> *:nth-child(2n + 1) {
-					background-color: colors.$table-row;
-				}
-				> *:nth-child(2n) {
-					background-color: colors.$background;
+				.day {
+					display: flex;
+					flex-direction: column;
+					> *:nth-child(2n + 1) {
+						background-color: colors.$table-row;
+					}
+					> *:nth-child(2n) {
+						background-color: colors.$background;
+					}
+					& + .day {
+						border-top: borders.$button;
+					}
 				}
 				.date {
 					padding: gutters.$extra-large;

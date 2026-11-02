@@ -8,6 +8,7 @@ export const coursesValues: string[] = [
   "Intermédiaire",
   "Avancé",
   "CSAU",
+  "Secrétariat",
 ];
 
 const teachers = [
@@ -31,12 +32,17 @@ const teachers = [
 const coursesCollection = defineCollection({
   type: "content",
   schema: z.object({
-    date: z.date(),
-    courses: z.array(
+    // one entry per day with courses (e.g. a Wednesday and a Saturday in the same week)
+    days: z.array(
       z.object({
-        hour_interval: z.string(),
-        courseName: z.enum(coursesValues),
-        teachers: z.array(z.enum(teachers)),
+        date: z.coerce.date(),
+        courses: z.array(
+          z.object({
+            hour_interval: z.string(),
+            courseName: z.enum(coursesValues),
+            teachers: z.array(z.enum(teachers)),
+          }),
+        ),
       }),
     ),
   }),
