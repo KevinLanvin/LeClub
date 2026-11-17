@@ -5,29 +5,36 @@ import Button from '../components/atoms/Button.astro'
 // of that frame, converted to % below so the collage scales with the section width.
 const FRAME_W = 1440
 const FRAME_H = 748
+// mobile collage frame (390 x 880), same idea with a single narrow column of overlapping photos
+const MOBILE_W = 390
+const MOBILE_H = 880
 
 const layout = [
 	{
 		src: '/images/le-club-au-poil-3.webp',
 		alt: 'Bénévole qui se cache le visage derrière sa main',
+		mobile: { cx: 280, cy: 140, w: 190, h: 185, rotate: 4, z: 1 },
 		cx: 589, cy: 160, w: 376, h: 362, rotate: -2, z: 1,
 		position: '27% 50%', scale: 3, origin: '50% 29%',
 	},
 	{
 		src: '/images/le-club-au-poil-4.webp',
 		alt: 'Bénévole et son chien dans une brouette',
+		mobile: { cx: 100, cy: 235, w: 185, h: 185, rotate: 3, z: 7 },
 		cx: 949, cy: 162, w: 408, h: 396, rotate: -3, z: 1,
 		position: 'center 40%', scale: 1, origin: 'center',
 	},
 	{
 		src: '/images/le-club-au-poil-1.webp',
 		alt: 'Équipe et chien sur une remorque',
+		mobile: { cx: 285, cy: 275, w: 200, h: 190, rotate: -4, z: 3 },
 		cx: 1300, cy: 181, w: 420, h: 409, rotate: 7, z: 3,
 		position: '25% 50%', scale: 1.4, origin: '30% 70%',
 	},
 	{
 		src: '/images/le-club-au-poil-2.webp',
 		alt: 'Bénévole avec son chien dans une brouette',
+		mobile: { cx: 105, cy: 100, w: 200, h: 190, rotate: -5, z: 2 },
 		cx: 236, cy: 175, w: 387, h: 374, rotate: -5, z: 2,
 		position: 'center 30%', scale: 1, origin: 'center',
 	},
@@ -48,38 +55,44 @@ const layout = [
 	{
 		src: '/images/le-club-au-poil-5.webp',
 		alt: 'Bénévole avec un chien noir et blanc dans une brouette',
+		mobile: { cx: 105, cy: 390, w: 210, h: 200, rotate: -8, z: 1 },
 		cx: 330, cy: 470, w: 420, h: 410, rotate: -31, z: 4,
 		position: 'center 45%', scale: 1, origin: 'center',
 	},
 	{
 		src: '/images/le-club-au-poil-6.webp',
 		alt: 'Berger australien la langue pendante',
+		mobile: { cx: 290, cy: 440, w: 170, h: 210, rotate: 6, z: 2 },
 		cx: 124, cy: 600, w: 340, h: 420, rotate: -12, z: 3,
 		position: '25% 50%', scale: 1, origin: 'center',
 	},
 	{
 		src: '/images/le-club-au-poil-7.webp',
 		alt: 'Bénévole souriant avec son chien dans les bras',
+		mobile: { cx: 100, cy: 540, w: 200, h: 190, rotate: -3, z: 3 },
 		cx: 563, cy: 653, w: 389, h: 377, rotate: 0, z: 3,
 		position: 'center 25%', scale: 1.3, origin: '45% 35%',
 	},
 	{
 		src: '/images/le-club-au-poil-8.webp',
 		alt: 'Deux bénévoles devant le local du club',
+		mobile: { cx: 285, cy: 590, w: 190, h: 190, rotate: 5, z: 4 },
 		cx: 845, cy: 665, w: 380, h: 370, rotate: 9, z: 4,
 		position: '86% 50%', scale: 1.75, origin: '50% 30%',
 	},
 	{
 		src: '/images/le-club-au-poil-9.webp',
 		alt: 'Border collie dans un champ de fleurs',
+		mobile: { cx: 105, cy: 700, w: 170, h: 230, rotate: 4, z: 5 },
 		cx: 1060, cy: 470, w: 270, h: 370, rotate: -3, z: 5,
 		position: '47% 40%', scale: 1.3, origin: '45% 40%',
 	},
 	{
 		src: '/images/le-club-au-poil-10.webp',
 		alt: 'Bénévole en blouson noir',
+		mobile: { cx: 280, cy: 745, w: 185, h: 220, rotate: -6, z: 7 },
 		cx: 1300, cy: 520, w: 330, h: 420, rotate: 8, z: 3,
-		position: 'center', scale: 2.6, origin: '40% 28%',
+		position: 'center', scale: 2.6, origin: '40% 22%',
 	},
 	{
 		src: '/images/le-club-au-poil-1.webp',
@@ -90,8 +103,16 @@ const layout = [
 	},
 ]
 
-const photos = layout.map(({ cx, cy, w, h, ...photo }) => ({
+const photos = layout.map(({ cx, cy, w, h, mobile, ...photo }) => ({
 	...photo,
+	mobile: mobile && {
+		left: ((mobile.cx - mobile.w / 2) / MOBILE_W) * 100,
+		top: ((mobile.cy - mobile.h / 2) / MOBILE_H) * 100,
+		width: (mobile.w / MOBILE_W) * 100,
+		height: (mobile.h / MOBILE_H) * 100,
+		rotate: mobile.rotate,
+		z: mobile.z,
+	},
 	rotate: photo.rotate,
 	left: ((cx - w / 2) / FRAME_W) * 100,
 	top: ((cy - h / 2) / FRAME_H) * 100,
@@ -106,7 +127,7 @@ const photos = layout.map(({ cx, cy, w, h, ...photo }) => ({
 			photos.map((photo) => (
 				<div
 					class:list={['photo', { decor: photo.decor }]}
-					style={`--left:${photo.left}%; --top:${photo.top}%; --width:${photo.width}%; --height:${photo.height}%; --rotate:${photo.rotate}deg; --z:${photo.z};`}
+					style={`--left:${photo.left}%; --top:${photo.top}%; --width:${photo.width}%; --height:${photo.height}%; --rotate:${photo.rotate}deg; --z:${photo.z}; ${photo.mobile ? `--m-left:${photo.mobile.left}%; --m-top:${photo.mobile.top}%; --m-width:${photo.mobile.width}%; --m-height:${photo.mobile.height}%; --m-rotate:${photo.mobile.rotate}deg; --m-z:${photo.mobile.z};` : ''}`}
 				>
 					<img
 						src={photo.src}
@@ -182,6 +203,17 @@ const photos = layout.map(({ cx, cy, w, h, ...photo }) => ({
 				border-radius: 12px;
 				box-shadow: shadows.$card;
 				overflow: hidden;
+				// white frame drawn above the photo: zoomed images (scale > 1) would otherwise
+				// cover the padding and get a thinner border than the others
+				&::after {
+					content: '';
+					position: absolute;
+					inset: 0;
+					border: 3px solid colors.$white;
+					border-radius: 12px;
+					z-index: 1;
+					pointer-events: none;
+				}
 				img {
 					display: block;
 					width: 100%;
@@ -226,8 +258,8 @@ const photos = layout.map(({ cx, cy, w, h, ...photo }) => ({
 			min-height: 0;
 			display: flex;
 			flex-direction: column;
-			gap: gutters.$normal;
-			padding: gutters.$normal;
+			gap: gutters.$small;
+			padding: gutters.$normal gutters.$normal gutters.$extra-large;
 			&::before {
 				display: none;
 			}
@@ -238,17 +270,14 @@ const photos = layout.map(({ cx, cy, w, h, ...photo }) => ({
 				position: relative;
 				inset: unset;
 				clip-path: none;
-				display: grid;
-				grid-template-columns: repeat(2, 1fr);
-				gap: gutters.$small;
+				aspect-ratio: 390 / 880;
 				.photo {
-					position: relative;
-					left: unset;
-					top: unset;
-					width: 100%;
-					height: 8rem;
-					transform: none;
-					z-index: auto;
+					left: var(--m-left);
+					top: var(--m-top);
+					width: var(--m-width);
+					height: var(--m-height);
+					transform: rotate(var(--m-rotate));
+					z-index: var(--m-z);
 					&.decor {
 						display: none;
 					}
