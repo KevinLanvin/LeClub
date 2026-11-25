@@ -22,11 +22,6 @@ days:
         teachers:
           - marie
           - patrick
-      - hour_interval: 15:00 - 16:00
-        courseName: Avancé
-        teachers:
-          - anthony
-          - valerie
       - hour_interval: 16:00 - 17:00
         courseName: Rééducation
         teachers:

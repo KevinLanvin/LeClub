@@ -52,8 +52,8 @@ collections:
                       - { label: 4 - 6 mois, value: 4 - 6 mois }
                       - { label: 6 mois et +, value: 6 mois et + }
                       - { label: Rééducation, value: Rééducation }
-                      - { label: Intermédiaire, value: Intermédiaire }
-                      - { label: Avancé, value: Avancé }
+                      - { label: Intermédiaire / Avancé, value: Intermédiaire }
+                      - { label: Tous niveaux (> 4mois), value: Tous niveaux }
                       - { label: CSAU, value: CSAU }
                       - { label: Secrétariat, value: Secrétariat }
                   - label: Moniteurs
@@ -77,3 +77,5 @@ collections:
                       - { label: Sandrine, value: sandrine }
                       - { label: Valérie, value: valerie }
                       - { label: Yohann, value: yohann }
+                      - { label: Martine C, value: martineC }
+                      - { label: Martine D, value: martineD }

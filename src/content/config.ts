@@ -6,7 +6,7 @@ export const coursesValues: string[] = [
   "6 mois et +",
   "Rééducation",
   "Intermédiaire",
-  "Avancé",
+  "Tous niveaux",
   "CSAU",
   "Secrétariat",
 ];
@@ -27,6 +27,8 @@ const teachers = [
   "kevin",
   "guillaume",
   "dominique",
+  "martineC",
+  "martineD",
 ] as const;
 
 const coursesCollection = defineCollection({
