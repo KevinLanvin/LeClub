@@ -17,8 +17,28 @@ const formatDate = (date: Date) =>
 		day: 'numeric',
 		month: 'long',
 	})
-const capitalize = ([first, ...rest]: string): string =>
-	`${first.toUpperCase()}${rest.join('')}`
+// displayed names (same labels as the monitors list in public/admin/config.yml)
+const teacherNames: Record<string, string> = {
+	anthony: 'Anthony',
+	badis: 'Badis',
+	christophe: 'Christophe',
+	dominique: 'Dominique',
+	fred: 'Fred',
+	guillaume: 'Guillaume',
+	kevin: 'Kevin',
+	laurent: 'Laurent',
+	lena: 'Léna',
+	marie: 'Marie-Christine',
+	nathalie: 'Nathalie',
+	patrick: 'Patrick',
+	sandrine: 'Sandrine',
+	valerie: 'Valérie',
+	yohann: 'Yohann',
+	martineC: 'Martine C',
+	martineD: 'Martine D',
+}
+const teacherName = (teacher: string): string =>
+	teacherNames[teacher] ?? teacher
 
 const courseColor: Record<(typeof coursesValues)[number], string> = {
 	'2 - 4 mois': 'green',
@@ -99,7 +119,7 @@ const monitorAvatars = {
 							</div>
 							*/}
 							<span class='names'>
-								{course.teachers.map(capitalize).join(' & ')}
+								{course.teachers.map(teacherName).join(' & ')}
 							</span>
 						</td>
 					</tr>
@@ -131,7 +151,7 @@ const monitorAvatars = {
 								</div>
 								*/}
 								<span class='names'>
-									{course.teachers.map(capitalize).join(' & ')}
+									{course.teachers.map(teacherName).join(' & ')}
 								</span>
 							</div>
 						</div>
@@ -264,8 +284,10 @@ const monitorAvatars = {
 			th:last-child {
 				text-align: left;
 			}
+			// a flex `td` stops being a table cell (it no longer fills the row height): override it here
 			td.monitors {
-				justify-content: flex-start;
+				display: table-cell;
+				text-align: left;
 			}
 		}
 		.planning-mobile {
