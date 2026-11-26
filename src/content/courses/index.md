@@ -30,6 +30,7 @@ days:
         courseName: 2 - 4 mois
       - teachers:
           - valerie
+          - anneSophie
         hour_interval: 14h30 - 15h30
         courseName: 4 - 6 mois
       - teachers:
