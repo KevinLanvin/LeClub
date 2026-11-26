@@ -1,40 +1,46 @@
 ---
 days:
-  - date: 2026-05-05
-    courses:
-      - hour_interval: 09:00 - 10:00
-        courseName: 2 - 4 mois
-        teachers:
-          - sandrine
-          - laurent
-      - hour_interval: 10:00 - 11:00
-        courseName: 4 - 6 mois
-        teachers:
-          - fred
-          - lena
-      - hour_interval: 11:00 - 12:00
-        courseName: 6 mois et +
-        teachers:
-          - nathalie
-          - yohann
-      - hour_interval: 14:00 - 15:00
-        courseName: Intermédiaire
-        teachers:
-          - marie
-          - patrick
-      - hour_interval: 16:00 - 17:00
-        courseName: Rééducation
-        teachers:
-          - christophe
-          - badis
-  - date: 2026-11-07
+  - date: 2026-11-28
     courses:
       - teachers:
           - marie
-        hour_interval: 09H30-10H30
+          - christophe
+          - valerie
+        hour_interval: 09h30 - 10h30
         courseName: CSAU
       - teachers:
-          - fred
-        hour_interval: 10H30
+          - guillaume
+          - valerie
+        hour_interval: 10h30 - 11h30
+        courseName: Tous niveaux
+      - teachers:
+          - kevin
+          - christophe
+        hour_interval: 10h30 - 11h30
+        courseName: Rééducation
+      - teachers:
+          - lena
+          - martineD
+        hour_interval: 14h - 14h30
+        courseName: Secrétariat
+      - teachers:
+          - martineC
+          - sandrine
+        hour_interval: 14h30 - 15h30
+        courseName: 2 - 4 mois
+      - teachers:
+          - valerie
+        hour_interval: 14h30 - 15h30
         courseName: 4 - 6 mois
+      - teachers:
+          - kevin
+          - guillaume
+          - lena
+        hour_interval: 14h30 - 15h30
+        courseName: 6 mois et +
+      - teachers:
+          - anthony
+          - christophe
+        hour_interval: 14h30 - 15h30
+        courseName: Intermédiaire
 ---
