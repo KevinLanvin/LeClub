@@ -29,6 +29,8 @@ const teachers = [
   "dominique",
   "martineC",
   "martineD",
+  "ghita",
+  "anneSophie",
 ] as const;
 
 const coursesCollection = defineCollection({

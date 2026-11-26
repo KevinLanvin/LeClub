@@ -111,6 +111,8 @@ var TEACHER_NAMES = {
   yohann: 'Yohann',
   martineC: 'Martine C',
   martineD: 'Martine D',
+  ghita: 'Ghita',
+  anneSophie: 'Anne-Sophie',
 }
 
 function teacherName(value) {

@@ -79,3 +79,5 @@ collections:
                       - { label: Yohann, value: yohann }
                       - { label: Martine C, value: martineC }
                       - { label: Martine D, value: martineD }
+                      - { label: Ghita, value: ghita }
+                      - { label: Anne-Sophie, value: anneSophie }
