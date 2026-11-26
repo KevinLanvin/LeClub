@@ -17,7 +17,7 @@ const teachers = [
   "fred",
   "lena",
   "nathalie",
-  "yohann",
+  "yoan",
   "marie",
   "patrick",
   "anthony",

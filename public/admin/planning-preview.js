@@ -108,7 +108,7 @@ var TEACHER_NAMES = {
   patrick: 'Patrick',
   sandrine: 'Sandrine',
   valerie: 'Valérie',
-  yohann: 'Yohann',
+  yoan: 'Yoan',
   martineC: 'Martine C',
   martineD: 'Martine D',
   ghita: 'Ghita',
